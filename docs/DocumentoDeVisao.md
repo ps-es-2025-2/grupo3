@@ -10,9 +10,11 @@
 
 ## Introdução
 
-O **Mind System** é um sistema de apoio psicológico e vocacional com o objetivo de auxiliar estudantes do ensino médio na escolha de suas carreiras. O projeto tem um viés psicológico, visando reduzir a evasão escolar e o estresse na vida dos alunos, através de **questionários, relatórios, consultas virtuais e acompanhamento com psicólogos**.
+O Mind System é um sistema de orientação vocacional e acompanhamento psicológico voltado para estudantes do ensino médio. Ele surge como resposta à crescente necessidade de ferramentas que auxiliem jovens em um dos momentos mais desafiadores da vida escolar: a escolha de uma carreira profissional.
 
-Além da orientação vocacional, o sistema contempla **gestão de usuários, pesquisas de feedback e conformidade com a LGPD**, garantindo privacidade e segurança dos dados.
+Além de oferecer testes vocacionais estruturados, o sistema integra funcionalidades como acompanhamento com psicólogos, relatórios de progresso, consultas virtuais e geração de laudos profissionais. Essa combinação promove não apenas a orientação de carreira, mas também o cuidado com a saúde mental dos alunos, reduzindo a ansiedade e o risco de evasão escolar.
+
+O software foi concebido como uma plataforma digital acessível, intuitiva e segura, pautada pela Lei Geral de Proteção de Dados (LGPD). Dessa forma, busca-se democratizar o acesso à orientação vocacional de qualidade, tornando-a escalável e adaptada às necessidades contemporâneas.
 
 ---
 
@@ -20,37 +22,52 @@ Além da orientação vocacional, o sistema contempla **gestão de usuários, pe
 
 ### Descrição do Problema
 
-Jovens no ensino médio enfrentam altos níveis de estresse e indecisão devido à escolha profissional. A ausência de ferramentas adequadas de orientação e acompanhamento psicológico intensifica esse cenário, aumentando os índices de evasão escolar e insatisfação futura com a carreira escolhida.
+Estudantes do ensino médio, especialmente no último ano, enfrentam pressão acadêmica e social* para definir sua trajetória profissional. Essa decisão precoce, quando tomada sem autoconhecimento e sem informações adequadas, leva a:
+
+* altos níveis de estresse e ansiedade;
+* escolhas de carreira inconsistentes com as aptidões pessoais;
+* desistências e evasão em cursos superiores;
+* frustrações pessoais e profissionais.
+
+Hoje, faltam soluções integradas que combinem apoio vocacional, acompanhamento psicológico e tecnologia acessível. Muitas instituições ainda utilizam métodos manuais e pouco interativos, dificultando a escala e o engajamento dos alunos.
 
 ### Partes Afetadas
 
-* **Estudantes**: enfrentam estresse e incerteza sobre o futuro.
-* **Psicólogos**: lidam com a demanda por orientação individualizada e precisam de ferramentas para organizar atendimentos.
-* **Instituições de ensino**: impactadas pelos altos índices de evasão e queda no desempenho dos alunos.
+* **Estudantes**: principais impactados pela indecisão, ansiedade e falta de informações.
+* **Psicólogos**: carecem de ferramentas digitais que organizem testes, consultas e laudos.
+* **Instituições de ensino**: sofrem com índices elevados de evasão, perda de capital humano e desperdício de investimentos educacionais.
+* **Famílias**: acompanham a pressão emocional dos jovens e muitas vezes não sabem como apoiá-los.
 
 ### Impacto
 
-* **Pessoal**: melhora da saúde mental e da segurança nas escolhas de carreira dos estudantes.
-* **Educacional**: redução da evasão no ensino superior.
-* **Social**: diminuição de profissionais desmotivados e pouco produtivos.
+* **Indivíduo**: maior clareza nas escolhas, redução do estresse e fortalecimento do autoconhecimento.
+* **Educação**: queda nos índices de evasão e maior engajamento acadêmico.
+* **Sociedade**: desenvolvimento de profissionais mais motivados, produtivos e alinhados às demandas do mercado.
 
 ### Solução de Sucesso
 
-* Questionários e relatórios que promovam o autoconhecimento.
-* Acompanhamento individualizado com psicólogos, incluindo consultas virtuais e geração de laudos.
+Uma solução eficaz deve:
+
+* Oferecer testes vocacionais estruturados e interativos com questionários e relatórios que promovam o autoconhecimento;
+* Proporcionar consultas online com psicólogos, permitindo o acompanhamento individualizado com psicólogos, incluindo consultas virtuais e geração de laudos;
+* Permitir visualização clara do progresso do aluno;
+* Disponibilizar laudos técnicos em PDF;
 * Suporte a múltiplos perfis de usuário (Aluno, Psicólogo, Administrador).
-* Conformidade com a **LGPD** e integração com o **Google Meet**.
+* Ser acessível (PWA) e segura (LGPD, autenticação robusta);
+* Apoiar a gestão institucional, fornecendo dados e relatórios úteis para escolas e psicólogos.
 
 ---
 
 ## Partes Interessadas
 
-| Unidade                   | Representada Por            | Envolvimento                                                                            |
-| ------------------------- | --------------------------- | --------------------------------------------------------------------------------------- |
-| Equipe de Desenvolvimento | Time técnico                | Define arquitetura, implementa funcionalidades e assegura segurança.                    |
-| Psicólogos                | Profissionais de Psicologia | Realizam consultas, analisam alunos e geram laudos.                                     |
-| Estudantes                | Alunos do Ensino Médio      | Usuários finais, respondem questionários, recebem laudos e participam de consultas.     |
-| Administração             | Administrador               | Gerencia usuários, psicólogos e questionários, além de registrar pesquisas de feedback. |
+| Unidade                    | Representada Por                            | Envolvimento no Projeto                                                                                                         |
+| -------------------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Equipe de Desenvolvimento  | Desenvolvedores, arquitetos e QA            | Definem a arquitetura, implementam funcionalidades, realizam testes e garantem segurança.                                       |
+| Psicólogos                 | Profissionais de psicologia                 | Acompanham os estudantes, aplicam metodologias vocacionais, geram laudos e realizam consultas.                                  |
+| Estudantes                 | Alunos do Ensino Médio                     | Usuários finais que utilizam a plataforma para se autoconhecer, responder questionários e acessar orientação profissional.      |
+| Equipe de Administração    | Administradores do sistema                  | Responsáveis por cadastrar psicólogos, gerenciar questionários, registrar pesquisas de feedback e monitorar a saúde do sistema. |
+| Instituições de Ensino     | Escolas, faculdades e centros de orientação | Parceiros que podem adotar o sistema como ferramenta institucional para reduzir evasão e apoiar estudantes.                     |
+| Famílias                   | Pais e responsáveis                         | Interessados indiretos nos resultados, já que acompanham o impacto emocional e as decisões de carreira dos estudantes.          |
 
 ---
 
@@ -75,12 +92,14 @@ Jovens no ensino médio enfrentam altos níveis de estresse e indecisão devido 
 
 ## Objetivos do Negócio
 
-| Objetivo                          | Descrição                                                         |
-| --------------------------------- | ----------------------------------------------------------------- |
-| Reduzir a evasão escolar          | Orientar os alunos em escolhas conscientes de carreira.           |
-| Melhorar a saúde mental           | Apoiar o equilíbrio emocional dos estudantes com psicólogos.      |
-| Centralizar orientação vocacional | Disponibilizar uma plataforma digital acessível e integrada.      |
-| Agregar valor para instituições   | Disponibilizar dados analíticos de perfil e progresso dos alunos. |
+| Objetivo                                    | Descrição                                                                            |
+| ------------------------------------------- | ------------------------------------------------------------------------------------ |
+| **Reduzir a evasão escolar**                | Apoiar escolhas conscientes de carreira, diminuindo desistências no ensino superior. |
+| **Promover saúde mental**                   | Fornecer suporte psicológico para reduzir estresse e ansiedade.                      |
+| **Ampliar acesso à orientação vocacional**  | Disponibilizar uma plataforma digital inclusiva e escalável.                         |
+| **Fornecer valor agregado às instituições** | Oferecer dados estratégicos sobre perfis de alunos, evolução e riscos de evasão.     |
+| **Garantir segurança e confiabilidade**     | Manter conformidade com a LGPD e aplicar boas práticas de cibersegurança.            |
+| **Estimular inovação pedagógica**           | Integrar psicologia, educação e tecnologia em um único ecossistema digital.          |
 
 ---
 
@@ -88,9 +107,12 @@ Jovens no ensino médio enfrentam altos níveis de estresse e indecisão devido 
 
 ### Perspectiva
 
-O produto será uma **aplicação web progressiva (PWA)**, acessível em múltiplos dispositivos.
-Integrações externas: **API Google Meet** (consultas virtuais).
-Segurança: **LGPD** como base para consentimento e controle de dados.
+O Mind System é uma plataforma digital de orientação vocacional e acompanhamento psicológico que combina:
+
+* **Aplicação web progressiva (PWA)**, acessível em múltiplos dispositivos;
+* **Integração com APIs externas**, como Google Meet para consultas virtuais;
+* **Conformidade com LGPD**, incluindo consentimento de uso de dados pessoais;
+* **Arquitetura escalável**, preparada para evolução com novos recursos e perfis de usuário.
 
 ### Características Chave
 
