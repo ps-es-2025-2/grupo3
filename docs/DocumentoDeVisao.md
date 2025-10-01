@@ -98,13 +98,52 @@ Segurança: **LGPD** como base para consentimento e controle de dados.
 
 ---
 
+## Requisitos Funcionais
+
+| ID  | Requisito Funcional                                                                                         | Casos de Uso Relacionados                                                                                                  |
+| --- | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| RF1 | O sistema deve permitir cadastro, autenticação (credenciais e login social) e gerenciamento de usuários.    | Realizar Cadastro, Realizar Login, Login Social (Gmail), Atualizar Dados Pessoais, Cadastrar Psicólogo, Gerenciar Usuários |
+| RF2 | O sistema deve disponibilizar questionários para alunos, permitindo visualização, resposta e gerenciamento. | Visualizar Questionários, Responder Questionário, Visualizar Progresso, Cadastrar Questionário, Gerenciar Questionários    |
+| RF3 | O sistema deve permitir ao aluno acompanhar seu progresso.                                                  | Visualizar Progresso                                                                                                       |
+| RF4 | O sistema deve disponibilizar laudos psicológicos para os alunos.                                           | Acessar Laudos                                                                                                             |
+| RF5 | O sistema deve permitir que psicólogos gerem laudos em PDF.                                                 | Gerar Laudo PDF                                                                                                            |
+| RF6 | O sistema deve permitir o agendamento e realização de consultas virtuais.                                   | Agendar Consulta, Realizar Consulta Virtual                                                                                |
+| RF7 | O sistema deve permitir a coleta de feedback por meio de pesquisas.                                         | Responder Pesquisa, Registrar Pesquisa Feedback                                                                            |
+| RF8 | O sistema deve garantir o consentimento do usuário segundo a LGPD.                                          | Consentir Dados, Acessar Dados Pessoais                                                                                    |
+
+---
+
 ## Requisitos Não Funcionais
 
-| Tipo           | Descrição                                                   | Prioridade |
-| -------------- | ----------------------------------------------------------- | ---------- |
-| Usabilidade    | Interface intuitiva para estudantes e psicólogos.           | 1          |
-| Acessibilidade | Disponível em desktop, tablet e mobile.                     | 2          |
-| Confiabilidade | Alta disponibilidade para consultas e testes.               | 1          |
-| Desempenho     | Resposta rápida na navegação e carregamento.                | 1          |
-| Segurança      | Conformidade LGPD, autenticação forte e proteção digital.   | 1          |
-| Escalabilidade | Permitir evolução para novos perfis de testes e relatórios. | 2          |
+| ID   | Requisito Não Funcional                                                                           | Casos de Uso Relacionados                                                               |
+| ---- | ------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| RNF1 | O sistema deve apresentar interface intuitiva e fácil de usar.                                    | Todos os casos de uso de interação direta (ex.: Responder Questionário, Acessar Laudos) |
+| RNF2 | O sistema deve ser acessível em diferentes dispositivos (PWA).                                    | Todos os casos de uso                                                                   |
+| RNF3 | O sistema deve garantir disponibilidade e estabilidade para consultas online e geração de laudos. | Realizar Consulta Virtual, Agendar Consulta, Gerar Laudo PDF                            |
+| RNF4 | O sistema deve carregar rapidamente, com respostas em tempo real.                                 | Questionários, Consultas, Dashboard                                                     |
+| RNF5 | O sistema deve implementar autenticação segura e gestão confiável de usuários.                    | Realizar Login, Realizar Cadastro, Gerenciar Usuários                                   |
+| RNF6 | O sistema deve permitir expansão para novos questionários, pesquisas e relatórios.                | Cadastrar Questionário, Gerenciar Questionários, Registrar Pesquisa Feedback            |
+
+---
+
+## Matriz de Rastreabilidade (RF ↔ Casos de Uso)
+
+| Caso de Uso                 | RFs Relacionados |
+| --------------------------- | ---------------- |
+| Realizar Cadastro           | RF1, RF8         |
+| Realizar Login              | RF1              |
+| Login Social (Gmail)        | RF1              |
+| Atualizar Dados Pessoais    | RF1              |
+| Visualizar Questionários    | RF2              |
+| Responder Questionário      | RF2              |
+| Visualizar Progresso        | RF2, RF3         |
+| Cadastrar Questionário      | RF2              |
+| Gerenciar Questionários     | RF2              |
+| Cadastrar Psicólogo         | RF1              |
+| Gerenciar Usuários          | RF1              |
+| Responder Pesquisa          | RF7              |
+| Registrar Pesquisa Feedback | RF7              |
+| Acessar Laudos              | RF4              |
+| Gerar Laudo PDF             | RF5              |
+| Agendar Consulta            | RF6              |
+| Realizar Consulta Virtual   | RF6              |
