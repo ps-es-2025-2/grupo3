@@ -1,8 +1,10 @@
-﻿# Documento de Visão - Mind System
+# Documento de Visão - Mind System
 
 ## Introdução
 
-O software é um sistema de teste vocacional com o objetivo de auxiliar estudantes do ensino médio na escolha de suas carreiras. O projeto tem um viés psicológico, visando reduzir a evasão escolar e o estresse na vida dos alunos, através de questionários, relatórios e a interação com psicólogos.
+O **Mind System** é um sistema de apoio psicológico e vocacional com o objetivo de auxiliar estudantes do ensino médio na escolha de suas carreiras. O projeto tem um viés psicológico, visando reduzir a evasão escolar e o estresse na vida dos alunos, através de **questionários, relatórios, consultas virtuais e acompanhamento com psicólogos**.
+
+Além da orientação vocacional, o sistema contempla **gestão de usuários, pesquisas de feedback e conformidade com a LGPD**, garantindo privacidade e segurança dos dados.
 
 ---
 
@@ -10,98 +12,99 @@ O software é um sistema de teste vocacional com o objetivo de auxiliar estudant
 
 ### Descrição do Problema
 
-Jovens no último ano do ensino médio frequentemente enfrentam altos níveis de estresse e distúrbios emocionais devido à pressão para a escolha profissional. Essa pressão, somada à falta de autoconhecimento e de informações sobre as carreiras, contribui para altos índices de evasão no ensino superior. Atualmente, muitos jovens não têm acesso a ferramentas de orientação vocacional de qualidade ou acompanhamento profissional, tornando o processo de decisão ainda mais difícil e incerto.
+Jovens no ensino médio enfrentam altos níveis de estresse e indecisão devido à escolha profissional. A ausência de ferramentas adequadas de orientação e acompanhamento psicológico intensifica esse cenário, aumentando os índices de evasão escolar e insatisfação futura com a carreira escolhida.
 
 ### Partes Afetadas
 
-Os **estudantes** são as principais partes afetadas, sofrendo com a indecisão e a pressão. Psicólogos e instituições de ensino também são afetados, pois lidam com os desafios emocionais e o problema da evasão.
+* **Estudantes**: enfrentam estresse e incerteza sobre o futuro.
+* **Psicólogos**: lidam com a demanda por orientação individualizada e precisam de ferramentas para organizar atendimentos.
+* **Instituições de ensino**: impactadas pelos altos índices de evasão e queda no desempenho dos alunos.
 
 ### Impacto
 
-O problema tem um impacto direto na saúde mental e na qualidade de vida dos estudantes. Para a sociedade, os altos índices de evasão representam uma perda de potencial e um desperdício de recursos educacionais. Além disso, a falta de orientação pode levar a escolhas de carreira insatisfatórias, resultando em profissionais desmotivados e menos produtivos.
+* **Pessoal**: melhora da saúde mental e da segurança nas escolhas de carreira dos estudantes.
+* **Educacional**: redução da evasão no ensino superior.
+* **Social**: diminuição de profissionais desmotivados e pouco produtivos.
 
 ### Solução de Sucesso
 
-Uma solução de sucesso deve oferecer aos estudantes ferramentas para o autoconhecimento, como questionários detalhados, e informações precisas sobre as profissões. A possibilidade de acompanhamento com psicólogos e a geração de laudos também são cruciais. O sistema deve ser fácil de usar, acessível em diversas plataformas e, acima de tudo, seguro e confiável para proteger os dados sensíveis dos usuários.
+* Questionários e relatórios que promovam o autoconhecimento.
+* Acompanhamento individualizado com psicólogos, incluindo consultas virtuais e geração de laudos.
+* Suporte a múltiplos perfis de usuário (Aluno, Psicólogo, Administrador).
+* Conformidade com a **LGPD** e integração com o **Google Meet**.
 
 ---
 
 ## Partes Interessadas
 
-### Partes Interessadas
+| Unidade                   | Representada Por            | Envolvimento                                                                            |
+| ------------------------- | --------------------------- | --------------------------------------------------------------------------------------- |
+| Equipe de Desenvolvimento | Time técnico                | Define arquitetura, implementa funcionalidades e assegura segurança.                    |
+| Psicólogos                | Profissionais de Psicologia | Realizam consultas, analisam alunos e geram laudos.                                     |
+| Estudantes                | Alunos do Ensino Médio      | Usuários finais, respondem questionários, recebem laudos e participam de consultas.     |
+| Administração             | Administrador               | Gerencia usuários, psicólogos e questionários, além de registrar pesquisas de feedback. |
 
-| Unidade | Representada Por | Envolvimento Com O Projeto |
-|---|---|---|
-| Equipe de Desenvolvimento | Membros do time | Desenvolvem o sistema, definem a arquitetura, implementam funcionalidades e garantem a segurança. |
-| Psicólogos | Profissionais de psicologia | Utilizam o sistema para acompanhar os estudantes, analisar resultados de testes e fornecer orientação. |
-| Estudantes do Ensino Médio | Alunos | Usuários finais que utilizam a plataforma para fazer os testes e receber orientações. |
-| Equipe de Administração| Administrador | Cadastra Psicólogos, registra questionário de feedback e cadastra os questionários |
+---
 
-### Usuários
+## Usuários
 
-1.
-| Tipo de Usuário | Aluno |
-|---|---|
-| Representante | Estudante do Ensino Médio |
-| Descrição | Estudante que busca orientação para a escolha de sua futura carreira. |
-| Responsabilidades | Responder questionários, agendar sessões com psicólogos e acompanhar seu progresso. |
+1. **Aluno**
 
-2.
-| Tipo de Usuário | Psicólogo |
-|---|---|
-| Representante | Profissional de Psicologia |
-| Descrição | Profissional responsável por analisar os resultados dos testes e auxiliar o estudante em sua jornada de autoconhecimento. |
-| Responsabilidades | Acessar resultados, criar laudos, gerar PDFs e realizar sessões de aconselhamento. |
+   * **Descrição**: Estudante que busca orientação de carreira.
+   * **Responsabilidades**: Responder questionários, visualizar progresso, acessar laudos, agendar e participar de consultas, responder pesquisas de feedback.
 
-3.
-| Tipo de Usuário | Administrador |
-|---|---|
-| Representante | Equipe do Produto |
-| Descrição | Usuário responsável pela gestão do sistema, incluindo a criação de questionários e a análise de dados. |
-| Responsabilidades | Gerenciar conteúdos, coletar feedbacks e garantir o funcionamento correto do sistema. |
+2. **Psicólogo**
+
+   * **Descrição**: Profissional de psicologia que acompanha alunos.
+   * **Responsabilidades**: Agendar e realizar consultas virtuais, analisar alunos, gerar laudos em PDF, acessar registros e responder pesquisas de feedback.
+
+3. **Administrador**
+
+   * **Descrição**: Usuário responsável pela gestão do sistema.
+   * **Responsabilidades**: Cadastrar e gerenciar usuários e psicólogos, criar e gerenciar questionários, registrar pesquisas de feedback.
 
 ---
 
 ## Objetivos do Negócio
 
-| Objetivo do Negócio | Descrição |
-|---|---|
-| Redução da Evasão | Ajudar estudantes a fazerem escolhas mais conscientes, diminuindo a taxa de evasão no ensino superior. |
-| Melhoria da Saúde Mental | Fornecer uma ferramenta de apoio para diminuir o estresse e a ansiedade relacionados à escolha profissional. |
-| Escala de Conhecimento | Centralizar a oferta de orientação vocacional, tornando-a acessível a um público mais amplo. |
-| Valor Agregado | Coletar dados para futuras análises de perfis comportamentais e oferecer insights sobre o mercado de trabalho. |
+| Objetivo                          | Descrição                                                         |
+| --------------------------------- | ----------------------------------------------------------------- |
+| Reduzir a evasão escolar          | Orientar os alunos em escolhas conscientes de carreira.           |
+| Melhorar a saúde mental           | Apoiar o equilíbrio emocional dos estudantes com psicólogos.      |
+| Centralizar orientação vocacional | Disponibilizar uma plataforma digital acessível e integrada.      |
+| Agregar valor para instituições   | Disponibilizar dados analíticos de perfil e progresso dos alunos. |
 
 ---
 
 ## Visão Geral do Produto
 
-### Perspectiva do Produto
+### Perspectiva
 
-O produto é uma aplicação web progressiva (PWA), o que significa que se comporta como um aplicativo nativo, mas pode ser acessado diretamente do navegador em qualquer dispositivo (desktop, tablet, celular), sem a necessidade de instalação. Ele se conecta a APIs externas, como a do **Google Meet** para as sessões com psicólogos. O sistema deve seguir rigorosamente as diretrizes da **LGPD** para garantir a privacidade e a segurança dos dados dos usuários.
+O produto será uma **aplicação web progressiva (PWA)**, acessível em múltiplos dispositivos.
+Integrações externas: **API Google Meet** (consultas virtuais).
+Segurança: **LGPD** como base para consentimento e controle de dados.
 
-### Características chaves do produto
+### Características Chave
 
-| Característica-chave | Descrição | Prioridade |
-|---|---|---|
-| Cadastro e Autenticação | Registro de diferentes perfis de usuário (Aluno, Psicólogo, Administrador) e login seguro. | 1 |
-| Questionários Vocacionais | Sistema de questionários com perguntas de diferentes áreas para o aluno responder. | 1 |
-| Dashboard do Aluno | Visualização do progresso nas atividades e do resultado dos testes. | 2 |
-| Acompanhamento por Psicólogo | Acesso do Psicólogo aos resultados do Aluno e ao seu progresso. | 1 |
-| Geração de Laudos | Psicólogos podem gerar laudos de avaliação em formato PDF. | 2 |
-| Integração com Google Meet | Criação de salas virtuais para sessões entre Aluno e Psicólogo. | 1 |
-| Coleta de Feedback | Questionários de pesquisa para a equipe de desenvolvimento. | 3 |
-| Proteção de Dados (LGPD) | Implementação de medidas de segurança e transparência no tratamento de dados. | 1 |
-| Segurança (reCAPTCHA e DDoS) | Medidas de segurança digital para proteger o sistema contra bots e ataques. | 2 |
+| Característica                 | Descrição                                                                                   | Prioridade |
+| ------------------------------ | ------------------------------------------------------------------------------------------- | ---------- |
+| **Autenticação Segura**        | Cadastro, login, login social (Gmail), atualização de dados e consentimento LGPD.           | 1          |
+| **Gestão de Questionários**    | Visualizar, responder e acompanhar progresso; cadastro e gerenciamento por administradores. | 1          |
+| **Acompanhamento Psicológico** | Consultas virtuais (Google Meet), geração e acesso a laudos PDF, agendamento de consultas.  | 1          |
+| **Administração**              | Cadastro de psicólogos, gerenciamento de usuários e questionários.                          | 2          |
+| **Feedback e Pesquisa**        | Registro de pesquisas pelo administrador e resposta de feedback por alunos e psicólogos.    | 3          |
+| **LGPD**                       | Consentimento e controle de acesso a dados pessoais.                                        | 1          |
+| **Segurança Avançada**         | Proteção contra bots e ataques DDoS.                                                        | 2          |
 
 ---
 
-### Requisitos Não Funcionais
+## Requisitos Não Funcionais
 
-| Tipo | Descrição | Prioridade |
-|---|---|---|
-| Usabilidade | A interface deve ser intuitiva e fácil de usar para todos os tipos de usuário, especialmente os estudantes, que devem conseguir navegar sem dificuldades. | 1 |
-| Acessibilidade | O sistema deve ser acessível para diferentes dispositivos (PWA) e para usuários com possíveis limitações. | 2 |
-| Confiabilidade | O sistema deve estar sempre disponível, garantindo a realização dos testes e a comunicação entre usuários. | 1 |
-| Desempenho | O sistema deve carregar rapidamente e ser responsivo, sem lentidão, garantindo uma boa experiência de usuário. | 1 |
-| Segurança | Por lidar com dados sensíveis, a segurança é uma prioridade máxima. Autenticação, proteção contra ataques (DDoS, bots) e conformidade com a LGPD são essenciais. | 1 |
-| Escalabilidade | O sistema deve ser projetado para permitir a expansão futura, como a adição de novos perfis de teste ou a coleta de dados para pesquisa. | 2 |
+| Tipo           | Descrição                                                   | Prioridade |
+| -------------- | ----------------------------------------------------------- | ---------- |
+| Usabilidade    | Interface intuitiva para estudantes e psicólogos.           | 1          |
+| Acessibilidade | Disponível em desktop, tablet e mobile.                     | 2          |
+| Confiabilidade | Alta disponibilidade para consultas e testes.               | 1          |
+| Desempenho     | Resposta rápida na navegação e carregamento.                | 1          |
+| Segurança      | Conformidade LGPD, autenticação forte e proteção digital.   | 1          |
+| Escalabilidade | Permitir evolução para novos perfis de testes e relatórios. | 2          |
