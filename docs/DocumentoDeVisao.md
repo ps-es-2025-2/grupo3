@@ -1,5 +1,13 @@
 # Documento de Visão - Mind System
 
+## Equipe
+| Aluno | GitHub | Cargo |
+|-------------|-------------|-------------|
+|Gustavo Rodrigues Ribeiro | GustavooRibas | Arquiteto de Software (AS)
+|Murillo Gordo de Andrade | murilloandrade | Testador (TT)
+|Davi de Souza Fernandes | sfDavi | Desenvolvedor Backend (DB) e Desenvolvedor Frontend (DF)
+|Felipe Alves Leão de Araújo| FelipeAlvesLeao | Analista de Requisitos (AR)
+
 ## Introdução
 
 O **Mind System** é um sistema de apoio psicológico e vocacional com o objetivo de auxiliar estudantes do ensino médio na escolha de suas carreiras. O projeto tem um viés psicológico, visando reduzir a evasão escolar e o estresse na vida dos alunos, através de **questionários, relatórios, consultas virtuais e acompanhamento com psicólogos**.
