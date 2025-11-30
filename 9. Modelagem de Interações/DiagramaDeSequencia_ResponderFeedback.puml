@@ -1,0 +1,90 @@
+@startuml
+title Diagramas de Sequência – Responder Pesquisa
+
+actor "Usuário" as usuario
+participant "PesquisaDashboard" as dashboard <<boundary>>
+participant "ControladorPesquisa" as ctrl <<control>>
+participant "PesquisaFeedback" as pesquisa <<entity>>
+participant "Resposta" as resposta <<entity>>
+participant "RepositoryPesquisas" as bd <<repository>>
+
+activate usuario
+
+' ==========================================================
+'                CASO DE USO: RESPONDER PESQUISA
+' ==========================================================
+
+== Selecionar Pesquisa ==
+usuario -> dashboard : 1: selecionarPesquisa()
+activate dashboard
+
+dashboard -> ctrl : 2: buscarPesquisasAtivas()
+activate ctrl
+
+ctrl -> bd : 3: listarPesquisasAtivas()
+activate bd
+bd --> ctrl : 3.1: List<pesquisasAtivas>
+deactivate bd
+
+ctrl --> dashboard : 4: apresentarPesquisas(pesquisasAtivas)
+deactivate ctrl
+
+dashboard --> usuario : 5: exibirPesquisas()
+
+== Apresentar Perguntas ==
+usuario -> dashboard : 6: escolherPesquisa(idPesquisa)
+dashboard -> ctrl : 7: carregarPesquisa(idPesquisa)
+activate ctrl
+
+ctrl -> bd : 7.1: buscarPesquisaPorId(idPesquisa)
+activate bd
+bd --> ctrl : 7.1.1: pesquisa
+deactivate bd
+
+ctrl -> pesquisa : 8: obterPerguntas()
+activate pesquisa
+pesquisa --> ctrl : 8.1: listaPerguntas
+deactivate pesquisa
+
+ctrl --> dashboard : 9: apresentarPerguntas(listaPerguntas)
+deactivate ctrl
+
+dashboard --> usuario : 10: exibirPerguntas(listaPerguntas)
+
+== Responder Pesquisa ==
+usuario -> dashboard : 11: ~*[i := 1..n]: responderPergunta(idPergunta[i], resp[i])
+activate dashboard
+dashboard -> dashboard : 11.1: ~*[i := 1..n]: armazenarRespostaTemp()
+deactivate dashboard
+
+usuario -> dashboard : 12: finalizarPesquisa()
+dashboard -> ctrl : 13: submeterRespostas(idPesquisa, respostas)
+activate ctrl
+
+== Salvar Respostas ==
+ctrl -> resposta : 14: criar(idPesquisa, idUsuario)
+activate resposta
+resposta --> ctrl : 14.1: criado
+deactivate resposta
+
+ctrl -> resposta : 15: ~*[i := 1..n]: adicionarResposta(resp[i])
+activate resposta
+resposta --> ctrl : 15.1: respostaAdicionada
+deactivate resposta
+
+ctrl -> bd : 16: salvarRespostas(resposta)
+activate bd
+alt Erro ao salvar
+    bd --> ctrl : 16.1: erroSalvar()
+    ctrl --> dashboard : erro: naoFoiPossivelSalvar(mensagem)
+    dashboard --> usuario : notificarErro(mensagem)
+else Sucesso
+    bd --> ctrl : 16.1: confirmacao
+end
+deactivate bd
+
+ctrl --> dashboard : 17: pesquisaRespondida()
+deactivate ctrl
+
+dashboard --> usuario : 18: notificarFinalizacao()
+@enduml
