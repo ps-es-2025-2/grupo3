@@ -1,0 +1,31 @@
+@startuml
+title Diagrama de Estados - Questionários
+
+[*] -> QuestionarioDisponivel 
+QuestionarioDisponivel --> QuestionarioAberto : Questionario\nselecionado  
+state QuestionarioAberto {
+  state "Respondendo Pergunta" as long1
+  [*] --> long1
+  long1 --> long1 : Ação executada
+  long1 --> SubmetendoQuestionario: Respostas Suficientes
+}
+
+
+QuestionarioAberto --> QuestionarioDisponivel : Salvar Respostas Parciais /\n when (tempo > timeout) 
+QuestionarioAberto --> [*] : Questionario Cancelado
+
+QuestionarioAberto --> QuestionarioRespondido : Questionario Submetido
+
+QuestionarioRespondido --> QuestionarioEmAvaliacao : Selecionado por Psicologo /\natribuirAvaliador(idPsicologoAtual,idQuestionario)
+state QuestionarioEmAvaliacao {
+  state "Avaliando Resposta" as long2
+  [*] --> long2
+  long2--> long2: Ação executada
+  long2--> SubmetendoAvaliacao: Avaliacao Concluida
+
+}
+QuestionarioEmAvaliacao --> QuestionarioRespondido :  Salvar Avaliacao Parcial /\n when (tempo > timeout)
+QuestionarioEmAvaliacao --> [*] : Avaliação Cancelada
+QuestionarioEmAvaliacao --> QuestionarioAvaliado : Questionario Avaliado Submetido
+QuestionarioAvaliado --> [*] : Avaliação Finalizada
+@enduml

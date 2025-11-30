@@ -1,0 +1,20 @@
+@startuml
+title Diagrama de Estados - Login Usuário
+
+state "Tela de login" as tela
+state "Autenticando gmail" as login_g
+state "Realizando login" as aut
+state "Usuário autenticado" as ok
+state "Dashboard" as home
+
+[*] --> tela
+tela --> aut : Usuário e senha \n informados
+tela --> login_g : Login pelo \n Google selecionado
+login_g --> aut : Login no pop-up \n concluído
+login_g --> tela : Erro na autenticação \n Google
+aut --> tela : Usuário e/ou \nsenha incorretos
+aut --> tela : Erro no login
+aut --> ok : Login validado
+ok --> home : Redirecionamento
+home --> [*]
+@enduml
