@@ -1,7 +1,8 @@
 ## BPMN 
-A ferramenta BPMN.io tem problemas com dar títulos para diagramas de forma horizontal então esse documento serve para nomear e explicar a estrutura, para mais fácil vizualição
+A ferramenta BPMN.io tem problemas com dar títulos para diagramas de forma horizontal, dificultando a leitura. Então, decidimos publicar cada diagrama em uma pasta, com estrutura Escopo - Nome do Caso de Uso.
 
-Cada coluna é um específico escopo de caso de uso e cada diagrama representa um caso de uso individual 
+Abaixo, uma tabela com os casos de uso representados
+
 
 | **Autenticação**  | **Questionários**                 | **Acompanhamento Psicológico** | **Feedback**                   |
 |-------------------|-----------------------------------|--------------------------------|--------------------------------|
