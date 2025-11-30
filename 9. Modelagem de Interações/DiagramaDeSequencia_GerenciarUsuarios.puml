@@ -1,0 +1,82 @@
+@startuml
+title Diagrama de Sequência – Gerenciar Usuários
+
+actor "Administrador" as admin
+participant "TelaAdministracao" as ui <<boundary>>
+participant "ControladorUsuarios" as ctrl <<control>>
+participant "Usuario" as user <<entity>>
+participant "RepositoryUsuarios" as repo <<repository>>
+
+activate admin
+
+' ============================================================
+' Caso de Uso: Gerenciar Usuários
+' ============================================================
+
+activate admin
+
+== Gerenciar Usuários ==
+
+admin -> ui : 1: selecionarUsuario(idUsuario)
+activate ui
+
+ui -> ctrl : 2: carregarUsuario(idUsuario)
+activate ctrl
+
+ctrl -> repo : 2.1: buscarUsuario(idUsuario)
+activate repo
+repo --> ctrl : 2.1.1: dadosUsuario
+deactivate repo
+
+ctrl --> ui : 2.2: exibirPerfil(dadosUsuario)
+deactivate ctrl
+
+ui --> admin : 2.3: apresentarOpcoes(editar/excluir)
+
+admin -> ui : 3: realizarAcao(acao, dadosAtualizados)
+
+ui -> ctrl : 4: atualizarOuExcluir(acao, dados)
+activate ctrl
+
+alt Ação = Editar
+    ctrl -> user : 4.1: atualizarDados(dadosAtualizados)
+    activate user
+    user --> ctrl : 4.1.1: dadosAtualizados
+    deactivate user
+
+    ctrl -> repo : 4.2: salvarAlteracoes(user)
+    activate repo
+
+    alt Sucesso
+        repo --> ctrl : 4.2.1: confirmacao
+        ctrl --> ui : 4.3: atualizacaoConfirmada()
+        ui --> admin : 4.4: notificarSucesso()
+    else Erro na atualização
+        repo --> ctrl : 4.2.2: erroAtualizacao
+        ctrl --> ui : 4.3e: notificarErroAtualizacao(mensagem)
+        ui --> admin : 4.4e: exibirMensagemErro(mensagem)
+    end
+
+    deactivate repo
+
+else Ação = Excluir
+    ctrl -> repo : 4.5: excluirUsuario(idUsuario)
+    activate repo
+
+    alt Sucesso
+        repo --> ctrl : 4.5.1: usuarioExcluido
+        ctrl --> ui : 4.6: exclusaoConfirmada()
+        ui --> admin : 4.7: notificarExclusao()
+    else Erro ao excluir
+        repo --> ctrl : 4.5.2: erroExclusao
+        ctrl --> ui : 4.6e: notificarErroExclusao(mensagem)
+        ui --> admin : 4.7e: exibirMensagemErro(mensagem)
+    end
+
+    deactivate repo
+end
+
+deactivate ctrl
+deactivate ui
+deactivate admin
+@enduml

@@ -1,0 +1,58 @@
+@startuml
+title Diagrama de Sequência – Cadastro de Usuário Comum
+
+actor "Usuário" as usuario
+participant "TelaAutenticacao" as ui <<boundary>>
+participant "ControladorAutenticacao" as ctrl <<control>>
+participant "Usuario" as user <<entity>>
+participant "RepositoryUsuarios" as repo <<repository>>
+
+activate usuario
+
+' ============================================================
+' Caso de Uso: Realizar Cadastro
+' ============================================================
+
+== Realizar Cadastro ==
+
+usuario -> ui : 1: acessarPaginaCadastro()
+activate ui
+
+ui -> ctrl : 2: solicitarDadosCadastro()
+activate ctrl
+ctrl --> ui : 2.1: requisitarInformacoesObrigatorias()
+ui --> usuario : 2.2: exibirFormulario()
+
+usuario -> ui : 3: enviarDadosComConsentimento(dados, consentimento)
+
+ui -> ctrl : 4: validarERegistrar(dados, consentimento)
+activate ctrl
+
+alt Dados inválidos
+    ctrl --> ui : 4.1e: notificarDadosInvalidos()
+    ui --> usuario : 4.2e: solicitarCorrecao()
+else Dados válidos
+    ctrl -> user : 4.1: criar(dados)
+    activate user
+    user --> ctrl : 4.1.1: usuarioCriado
+    deactivate user
+
+    ctrl -> repo : 4.2: salvarUsuario(user)
+    activate repo
+
+    alt Sucesso no salvamento
+        repo --> ctrl : 4.2.1: confirmacao
+        ctrl --> ui : 4.3: cadastroConfirmado()
+        ui --> usuario : 4.4: notificarSucesso()
+    else Falha de conexão
+        repo --> ctrl : 4.2.2: erroConexao
+        ctrl --> ui : 4.3e: notificarErroTemporario(mensagem)
+        ui --> usuario : 4.4e: exibirMensagemErro(mensagem)
+    end
+
+    deactivate repo
+end
+
+deactivate ctrl
+deactivate ui
+@enduml
