@@ -1,16 +1,13 @@
-# PLANO DE TESTES DE SOFTWARE
-# PROJETO: MIND SYSTEM
+# Plano de testes - Sistema de Teste Vocacional - Mind System
 
-================================================================================
-1. IDENTIFICAÇÃO DO DOCUMENTO
-================================================================================
+## Identificação do documento
+
 Projeto: Mind System
 Tecnologia: Java / JavaFX / BlueJ
 Tipo de Teste: Manual / Funcional e Não Funcional
 
-================================================================================
-2. OBJETIVO E ESCOPO
-================================================================================
+## Objetivo e escopo
+
 O objetivo deste documento é validar as funcionalidades críticas do sistema, 
 garantindo que alunos e psicólogos possam utilizar as ferramentas de questionários,
 laudos, feedbacks e agendamentos conforme especificado nos requisitos.
@@ -21,21 +18,16 @@ O escopo inclui:
 - Módulo de Aluno (Respostas a questionários, visualização de laudos, agendamento).
 - Verificação de Requisitos Não Funcionais (Usabilidade e Performance básica).
 
-================================================================================
-3. PRÉ-REQUISITOS E AMBIENTE
-================================================================================
+## Pré-requisitos
+
 1. O projeto deve estar compilado e em execução (via BlueJ ou JAR).
 2. Como o banco de dados é em memória (Mock), ao reiniciar a aplicação, 
    todos os dados criados (novos questionários/laudos) serão perdidos. 
    **Nota:** Testes sequenciais devem ser realizados na mesma sessão de execução.
 
-================================================================================
-4. CASOS DE TESTE FUNCIONAIS (CT)
-================================================================================
+## Casos de teste funcionais
 
---------------------------------------------------------------------------------
-MÓDULO 01: LOGIN (Ref: RF1, RNF5)
---------------------------------------------------------------------------------
+# Ciclo de testes 1: Login (RF1, RNF5)
 
 [CT-01] Login de Aluno com Sucesso
 - Pré-condição: Aplicação aberta na tela de Login.
@@ -65,9 +57,7 @@ MÓDULO 01: LOGIN (Ref: RF1, RNF5)
 - Passo 1: Clicar no botão "Sair" ou "Logout" no menu principal.
 > Resultado Esperado: Encerramento da sessão e retorno imediato à tela de Login.
 
---------------------------------------------------------------------------------
-MÓDULO 02: QUESTIONÁRIOS (Ref: RF2, RF3, RNF6)
---------------------------------------------------------------------------------
+# Ciclo de testes 2: Questionários (RF2, RF3, RNF6)
 
 [CT-05] Cadastrar Novo Questionário (Perfil Psicólogo)
 - Pré-condição: Logado como Psicólogo.
@@ -94,9 +84,7 @@ MÓDULO 02: QUESTIONÁRIOS (Ref: RF2, RF3, RNF6)
 > Resultado Esperado: O sistema bloqueia o envio e exibe alerta: "Responda todas
   as perguntas".
 
---------------------------------------------------------------------------------
-MÓDULO 03: LAUDOS E FEEDBACK (Ref: RF4, RF5, RF7)
---------------------------------------------------------------------------------
+# Ciclo de testes 3: Laudos e Feedback (RF4, RF5, RF7)
 
 [CT-08] Gerar Laudo ou Feedback (Perfil Psicólogo)
 - Pré-condição: Logado como Psicólogo.
@@ -113,10 +101,8 @@ MÓDULO 03: LAUDOS E FEEDBACK (Ref: RF4, RF5, RF7)
 - Passo 2: Verificar a lista exibida.
 > Resultado Esperado: O laudo recém-criado deve aparecer na lista com Data e
   Conteúdo corretos.
-
---------------------------------------------------------------------------------
-MÓDULO 04: AGENDAMENTO E CONSULTAS (Ref: RF6, RNF3)
---------------------------------------------------------------------------------
+  
+# Ciclo de testes 4: Agendamento e Consultas (RF6, RNF3)
 
 [CT-10] Agendar Consulta (Perfil Aluno)
 - Pré-condição: Logado como Aluno.
@@ -129,10 +115,8 @@ MÓDULO 04: AGENDAMENTO E CONSULTAS (Ref: RF6, RNF3)
 - Passo 1: Após agendar (CT-10), verificar o feedback do sistema.
 > Resultado Esperado: O sistema deve informar ou simular a geração de um link
   (Ex: Google Meet) associado àquela consulta.
-
-================================================================================
-5. TESTES NÃO FUNCIONAIS (RNF)
-================================================================================
+  
+## Casos de teste não funcionais 
 
 [RNF-01] Usabilidade e Interface (Ref: RNF1)
 - Critério: Navegar entre o Dashboard e as telas internas (Questionário, Laudos)
