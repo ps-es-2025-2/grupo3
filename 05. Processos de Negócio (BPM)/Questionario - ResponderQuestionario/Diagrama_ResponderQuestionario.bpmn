@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="sid-38422fae-e03e-43a3-bef4-bd33b32041b2" targetNamespace="http://bpmn.io/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="18.6.1">
+  <collaboration id="Collaboration_080okrl">
+    <participant id="Participant_1778ht5" name="Responder Questionário Vocacional" processRef="Process_1" />
+  </collaboration>
+  <process id="Process_1" isExecutable="false">
+    <startEvent id="Event_10k8l73">
+      <outgoing>Flow_0u2nubk</outgoing>
+    </startEvent>
+    <task id="Task_1hcentk" name="Aluno acessa dashboard">
+      <incoming>Flow_0u2nubk</incoming>
+      <outgoing>Flow_1pag5o7</outgoing>
+    </task>
+    <task id="Activity_01evso0" name="Sistema exibe questionários disponíveis">
+      <incoming>Flow_1pag5o7</incoming>
+      <outgoing>Flow_0rp8ikl</outgoing>
+    </task>
+    <task id="Activity_0nplx8u" name="Aluno seleciona questionário">
+      <incoming>Flow_0rp8ikl</incoming>
+      <outgoing>Flow_17av18r</outgoing>
+    </task>
+    <task id="Activity_1ms9s5k" name="Aluno responde questionário">
+      <incoming>Flow_17av18r</incoming>
+      <outgoing>Flow_1js377b</outgoing>
+    </task>
+    <task id="Activity_0jj9v9u" name="Sistema calcula pontuação">
+      <incoming>Flow_1js377b</incoming>
+      <outgoing>Flow_1na1u02</outgoing>
+    </task>
+    <task id="Activity_0cqz74q" name="Sistema gera relatório automático">
+      <incoming>Flow_1na1u02</incoming>
+      <outgoing>Flow_1tkpbch</outgoing>
+    </task>
+    <endEvent id="Event_0mo9xlt">
+      <incoming>Flow_1tkpbch</incoming>
+    </endEvent>
+    <sequenceFlow id="Flow_0u2nubk" sourceRef="Event_10k8l73" targetRef="Task_1hcentk" />
+    <sequenceFlow id="Flow_1pag5o7" sourceRef="Task_1hcentk" targetRef="Activity_01evso0" />
+    <sequenceFlow id="Flow_0rp8ikl" sourceRef="Activity_01evso0" targetRef="Activity_0nplx8u" />
+    <sequenceFlow id="Flow_17av18r" sourceRef="Activity_0nplx8u" targetRef="Activity_1ms9s5k" />
+    <sequenceFlow id="Flow_1js377b" sourceRef="Activity_1ms9s5k" targetRef="Activity_0jj9v9u" />
+    <sequenceFlow id="Flow_1na1u02" sourceRef="Activity_0jj9v9u" targetRef="Activity_0cqz74q" />
+    <sequenceFlow id="Flow_1tkpbch" sourceRef="Activity_0cqz74q" targetRef="Event_0mo9xlt" />
+  </process>
+  <bpmndi:BPMNDiagram id="BpmnDiagram_1">
+    <bpmndi:BPMNPlane id="BpmnPlane_1" bpmnElement="Collaboration_080okrl">
+      <bpmndi:BPMNShape id="Participant_1778ht5_di" bpmnElement="Participant_1778ht5" isHorizontal="true">
+        <omgdc:Bounds x="152" y="60" width="1078" height="250" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_10k8l73_di" bpmnElement="Event_10k8l73" bioc:stroke="#205022" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#205022">
+        <omgdc:Bounds x="202" y="172" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_1hcentk_di" bpmnElement="Task_1hcentk">
+        <omgdc:Bounds x="280" y="150" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_01evso0_di" bpmnElement="Activity_01evso0">
+        <omgdc:Bounds x="430" y="150" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1pzptdz" bpmnElement="Activity_0nplx8u">
+        <omgdc:Bounds x="580" y="150" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0ua1oi7" bpmnElement="Activity_1ms9s5k">
+        <omgdc:Bounds x="730" y="150" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1gjcp68" bpmnElement="Activity_0jj9v9u">
+        <omgdc:Bounds x="880" y="150" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_08jr89o" bpmnElement="Activity_0cqz74q">
+        <omgdc:Bounds x="1030" y="150" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0mo9xlt_di" bpmnElement="Event_0mo9xlt" bioc:stroke="#831311" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#831311">
+        <omgdc:Bounds x="1172" y="172" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0u2nubk_di" bpmnElement="Flow_0u2nubk">
+        <omgdi:waypoint x="238" y="190" />
+        <omgdi:waypoint x="280" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1pag5o7_di" bpmnElement="Flow_1pag5o7">
+        <omgdi:waypoint x="380" y="190" />
+        <omgdi:waypoint x="430" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0rp8ikl_di" bpmnElement="Flow_0rp8ikl">
+        <omgdi:waypoint x="530" y="190" />
+        <omgdi:waypoint x="580" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17av18r_di" bpmnElement="Flow_17av18r">
+        <omgdi:waypoint x="680" y="190" />
+        <omgdi:waypoint x="730" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1js377b_di" bpmnElement="Flow_1js377b">
+        <omgdi:waypoint x="830" y="190" />
+        <omgdi:waypoint x="880" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1na1u02_di" bpmnElement="Flow_1na1u02">
+        <omgdi:waypoint x="980" y="190" />
+        <omgdi:waypoint x="1030" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1tkpbch_di" bpmnElement="Flow_1tkpbch">
+        <omgdi:waypoint x="1130" y="190" />
+        <omgdi:waypoint x="1172" y="190" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

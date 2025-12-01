@@ -1,0 +1,78 @@
+@startuml
+title Diagrama de Sequência – Gerenciar Questionários
+
+actor "Administrador" as admin
+participant "FormularioAdmin" as ui <<boundary>>
+participant "ControladorQuestionario" as ctrl <<control>>
+participant "Questionario" as quest <<entity>>
+participant "RepositoryQuestionarios" as repo <<repository>>
+
+activate admin
+
+== Gerenciar Questionários ==
+
+activate admin
+
+admin -> ui : 1: selecionarQuestionario(id)
+activate ui
+
+ui -> ctrl : 2: carregarQuestionario(id)
+activate ctrl
+
+ctrl -> repo : 2.1: buscarPorId(id)
+activate repo
+repo --> ctrl : 2.1.1: questionario
+deactivate repo
+
+ctrl --> ui : 2.2: exibirOpcoes(edicao/exclusao)
+deactivate ctrl
+
+ui --> admin : 2.3: apresentarOpcoes()
+
+admin -> ui : 3: realizarAlteracoes(acao, dadosAtualizados)
+
+ui -> ctrl : 4: atualizarOuExcluir(acao, dados)
+activate ctrl
+
+alt Ação = Editar
+    ctrl -> quest : 4.1: atualizarDados(dadosAtualizados)
+    activate quest
+    quest --> ctrl : 4.1.1: dadosAtualizados
+    deactivate quest
+
+    ctrl -> repo : 4.2: salvarAtualizacao(quest)
+    activate repo
+
+    alt Sucesso na atualização
+        repo --> ctrl : 4.2.1: confirmacao
+        ctrl --> ui : 4.3: alteracoesSalvas()
+        ui --> admin : 4.4: notificarSucesso()
+    else Erro na atualização
+        repo --> ctrl : 4.2.2: erroAtualizacao
+        ctrl --> ui : 4.3e: notificarErroAtualizacao(mensagem)
+        ui --> admin : 4.4e: exibirMensagemErro(mensagem)
+    end
+
+    deactivate repo
+
+else Ação = Excluir
+    ctrl -> repo : 4.5: excluir(id)
+    activate repo
+
+    alt Sucesso na exclusão
+        repo --> ctrl : 4.5.1: confirmacaoExclusao
+        ctrl --> ui : 4.6: exclusaoConfirmada()
+        ui --> admin : 4.7: notificarExclusao()
+    else Erro na exclusão
+        repo --> ctrl : 4.5.2: erroExclusao
+        ctrl --> ui : 4.6e: notificarErroExclusao(mensagem)
+        ui --> admin : 4.7e: exibirMensagemErro(mensagem)
+    end
+
+    deactivate repo
+end
+
+deactivate ctrl
+deactivate ui
+deactivate admin
+@enduml

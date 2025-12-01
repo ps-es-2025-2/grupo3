@@ -1,0 +1,15 @@
+@startuml
+title Diagrama de Estados - Cadastrar Questionário
+state "Preenchendo dados" as dados
+state "Validando dados" as dados_v
+state "Questionário publicado" as dados_ok
+state "Cadastro cancelado" as cancel
+[*] --> dados
+dados --> dados_v : Salvar
+dados_v --> dados_ok : Sucesso
+dados_v --> dados : Campo obrigatório\n não preenchido
+dados_v --> dados : Erro
+dados --> cancel : Cancelar
+dados_ok --> [*]
+cancel --> [*]
+@enduml

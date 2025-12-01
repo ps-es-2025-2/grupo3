@@ -1,0 +1,29 @@
+@startuml
+title Diagrama de Sequência – Acessar Laudos
+
+actor "Aluno" as aluno
+participant "LaudosDashboard" as dashboard <<boundary>>
+participant "ControladorLaudos" as ctrl <<control>>
+participant "RepositoryLaudos" as bd <<repository>>
+
+activate aluno
+
+== Acessar Seção de Laudos ==
+aluno -> dashboard : 1: acessarLaudos()
+activate dashboard
+
+dashboard -> ctrl : 2: buscarLaudosAluno(idAluno)
+activate ctrl
+
+ctrl -> bd : 3: listarLaudosPorAluno(idAluno)
+activate bd
+
+bd --> ctrl : 3.1: List<laudos>
+deactivate bd
+
+ctrl --> dashboard : 4: apresentarLaudos(laudos)
+deactivate ctrl
+
+dashboard --> aluno : 5: exibirLaudosDisponiveis()
+deactivate dashboard
+@enduml

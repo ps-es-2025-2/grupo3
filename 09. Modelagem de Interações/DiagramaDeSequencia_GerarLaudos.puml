@@ -1,0 +1,55 @@
+@startuml
+title Diagrama de Sequência – Gerar Laudo PDF
+
+actor "Psicólogo" as psicologo
+participant "LaudoDashboard" as dashboard <<boundary>>
+participant "ControladorLaudos" as ctrl <<control>>
+participant "Laudo" as laudo <<entity>>
+participant "GeradorPDF" as pdf <<control>>
+participant "RepositoryLaudos" as bd <<repository>>
+
+activate psicologo
+
+== Iniciar Geração do Laudo ==
+psicologo -> dashboard : 1: acessarGeracaoDeLaudo(idAluno)
+activate dashboard
+
+dashboard -> ctrl : 2: gerarLaudo(idAluno)
+activate ctrl
+
+== Obter Dados do Laudo ==
+ctrl -> laudo : 3: compilarResultados(idAluno)
+activate laudo
+laudo --> ctrl : 3.1: dadosCompilados
+deactivate laudo
+
+== Gerar Arquivo PDF ==
+ctrl -> pdf : 4: gerarPDF(dadosCompilados)
+activate pdf
+
+alt Erro ao gerar PDF
+    pdf --> ctrl : 4.1.1e: erroGeracaoPDF()
+    deactivate pdf
+    ctrl --> dashboard : 4.1.2e: naoFoiPossivelGerarPDF(mensagem)
+    dashboard --> psicologo : 4.1.3e: notificarFalha(mensagem)
+    deactivate dashboard
+    deactivate ctrl
+else Sucesso
+    activate pdf
+    pdf --> ctrl : 4.1: arquivoPDF
+    deactivate pdf
+
+    == Salvar Laudo ==
+    ctrl -> bd : 5: salvarLaudo(arquivoPDF, idAluno)
+    activate bd
+    bd --> ctrl : 5.1: confirmacao
+    deactivate bd
+
+    ctrl --> dashboard : 6: laudoGerado()
+    deactivate ctrl
+
+    dashboard --> psicologo : 7: notificarSucesso()
+    deactivate dashboard
+end
+
+@enduml

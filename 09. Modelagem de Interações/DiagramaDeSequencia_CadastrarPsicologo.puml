@@ -1,0 +1,46 @@
+@startuml
+title Diagrama de Sequência – Cadastrar Psicólogo
+
+actor "Administrador" as admin
+participant "TelaAdministracao" as ui <<boundary>>
+participant "ControladorUsuarios" as ctrl <<control>>
+participant "Psicologo" as psic <<entity>>
+participant "RepositoryUsuarios" as repo <<repository>>
+
+activate admin
+
+' ============================================================
+' Caso de Uso: Cadastrar Psicólogo
+' ============================================================
+
+== Cadastrar Psicólogo ==
+
+admin -> ui : 1: inserirDadosPsicologo(dados)
+activate ui
+
+ui -> ctrl : 2: cadastrarPsicologo(dados)
+activate ctrl
+
+ctrl -> psic : 2.1: criarPsicologo(dados)
+activate psic
+psic --> ctrl : 2.1.1: psicologoCriado
+deactivate psic
+
+ctrl -> repo : 2.2: salvar(psicologo)
+activate repo
+
+alt Sucesso no cadastro
+    repo --> ctrl : 2.2.1: confirmacao
+    ctrl --> ui : 2.3: cadastroConfirmado()
+    ui --> admin : 2.4: notificarSucesso()
+else Erro no cadastro
+    repo --> ctrl : 2.2.2: erroCadastro
+    ctrl --> ui : 2.3e: notificarErroCadastro(mensagem)
+    ui --> admin : 2.4e: exibirMensagemErro(mensagem)
+end
+
+deactivate repo
+deactivate ctrl
+deactivate ui
+
+@enduml

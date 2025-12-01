@@ -1,0 +1,43 @@
+@startuml
+title Diagramas de Sequência – Registrar Pesquisa Feedback
+
+actor "Administrador" as admin
+participant "PesquisaDashboard" as dashboard <<boundary>>
+participant "ControladorPesquisa" as ctrl <<control>>
+participant "PesquisaFeedback" as pesquisa <<entity>>
+participant "RepositoryPesquisas" as bd <<repository>>
+
+activate admin
+
+' ==========================================================
+'                CASO DE USO: REGISTRAR PESQUISA FEEDBACK
+' ==========================================================
+
+== Cadastro de Nova Pesquisa ==
+admin -> dashboard : 1: cadastrarPesquisa(dadosPesquisa)
+activate dashboard
+
+dashboard -> ctrl : 2: registrarPesquisa(dadosPesquisa)
+activate ctrl
+
+ctrl -> pesquisa : 3: criarPesquisa(dadosPesquisa)
+activate pesquisa
+pesquisa --> ctrl : 3.1: criado
+deactivate pesquisa
+
+ctrl -> bd : 4: salvarPesquisa(pesquisa)
+activate bd
+alt Erro ao salvar
+    bd --> ctrl : 4.1.1e: erroCadastro()
+    ctrl --> dashboard : 4.1.2e: cadastroNaoRealizado(mensagem)
+    dashboard --> admin : 4.1.3e: notificarErroCadastro(mensagem)
+else Sucesso
+    bd --> ctrl : 4.1: pesquisaSalva()
+end
+deactivate bd
+
+ctrl --> dashboard : 5: pesquisaDisponibilizada()
+deactivate ctrl
+
+dashboard --> admin : 6: confirmarCadastro()
+@enduml

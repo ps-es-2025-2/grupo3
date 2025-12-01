@@ -1,0 +1,19 @@
+@startuml
+title Diagrama de Estados - Realizar Consulta Virtual
+
+state "Página pré-consulta" as pre
+state "Acessando Sala Virtual" as tela
+state "Reunião Google Meet" as meet
+state "Reunião finalizada" as end
+state "Página pós-consulta" as home
+
+[*] --> pre
+pre --> tela : Iniciar reunião
+tela --> meet : Horário da reunião \n válido
+tela --> pre : Horário \n inválido
+meet --> end : Sala encerrada\n por psicólogo
+meet --> pre : Saída da sala\n antes do encerramento
+meet --> pre : Desconexão \n antes do encerramento
+end --> home : Redirecionamento
+home --> [*]
+@enduml

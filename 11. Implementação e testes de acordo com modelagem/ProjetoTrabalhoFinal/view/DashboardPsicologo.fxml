@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardPsicologoController">
+   <padding><Insets bottom="20" left="20" right="20" top="20"/></padding>
+   <Label text="Área do Psicólogo"><font><Font size="22"/></font></Label>
+   <Label fx:id="lblNome" text="Bem-vindo(a)"/>
+   
+   <Button text="Escrever Novo Laudo" onAction="#onNovoLaudo" prefWidth="200" style="-fx-background-color: #4682B4; -fx-text-fill: white;"/>
+   <Button text="Avaliar Questionários" onAction="#onAvaliarQuestionarios" prefWidth="200" style="-fx-background-color: #4682B4; -fx-text-fill: white;"/>
+   <Button text="Cadastrar Questionários" onAction="#onCadastrarQuestionarios" prefWidth="200" style="-fx-background-color: #4682B4; -fx-text-fill: white;"/>
+   <Button text="Sair" onAction="#onSair" prefWidth="200"/>
+</VBox>

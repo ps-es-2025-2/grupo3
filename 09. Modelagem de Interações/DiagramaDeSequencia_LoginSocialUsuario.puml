@@ -1,0 +1,54 @@
+@startuml
+title Diagrama de Sequência – Login Social (Gmail)
+
+actor "Usuário" as usuario
+participant "TelaAutenticacao" as ui <<boundary>>
+participant "ControladorAutenticacao" as ctrl <<control>>
+participant "RepositoryUsuarios" as repo <<repository>>
+participant "API_Google" as google <<external>>
+
+activate usuario
+
+' ============================================================
+' Caso de Uso: Login Social (Gmail)
+' ============================================================
+
+== Login Social – Gmail ==
+
+activate usuario
+
+usuario -> ui : 1: selecionarLoginGmail()
+activate ui
+
+ui -> ctrl : 2: iniciarLoginSocial()
+activate ctrl
+
+ctrl -> google : 3: redirecionarParaAPI()
+activate google
+
+alt Autenticacao Google válida
+    google --> ctrl : 3.1: tokenValidado
+    ctrl -> repo : 3.2: registrarOuAtualizarUsuario(token)
+    activate repo
+    repo --> ctrl : 3.2.1: usuarioAtualizado/Registrado
+    deactivate repo
+    
+    ctrl --> ui : 3.3: loginAprovado()
+    ui --> usuario : 3.4: acessoLiberado()
+else Falha na autenticação
+    google --> ctrl : 3.1e: erroAutenticacao
+    ctrl --> ui : 3.2e: notificarErroGoogle(mensagem)
+    ui --> usuario : 3.3e: exibirMensagemErro(mensagem)
+end
+
+alt Usuário não concede permissão
+    google --> ctrl : 3.1p: permissaoNegada
+    ctrl --> ui : 3.2p: cancelarLogin(mensagem)
+    ui --> usuario : 3.3p: informarCancelamento(mensagem)
+end
+
+deactivate google
+deactivate ctrl
+deactivate ui
+deactivate usuario
+@enduml

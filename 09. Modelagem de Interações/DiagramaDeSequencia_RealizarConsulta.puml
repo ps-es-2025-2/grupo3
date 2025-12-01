@@ -1,0 +1,60 @@
+@startuml
+title Diagrama de Sequência – Realizar Consulta Virtual
+
+actor "Usuário (Aluno/Psicólogo)" as usuario
+participant "TelaAgenda" as ui <<boundary>>
+participant "ControladorConsulta" as ctrl <<control>>
+participant "RepositoryConsultas" as repo <<repository>>
+participant "API_GoogleMeet" as google <<external>>
+
+activate usuario
+
+' ========================================================================
+' Caso de Uso: Realizar Consulta Virtual
+' ========================================================================
+
+activate usuario
+
+== Realizar Consulta Virtual ==
+
+usuario -> ui : 1: acessarSalaVirtual(idConsulta)
+activate ui
+
+ui -> ctrl : 2: validarHorarioConsulta(idConsulta)
+activate ctrl
+
+ctrl -> repo : 2.1: obterConsulta(idConsulta)
+activate repo
+repo --> ctrl : 2.1.1: dadosConsulta
+deactivate repo
+
+ctrl --> ui : 2.2: exibirDadosConsulta(dadosConsulta)
+
+' Validar se está dentro do horário
+alt Horário válido
+    ui -> ctrl : 2.3: iniciarIntegracaoGoogleMeet()
+    
+    ctrl -> google : 2.4: criarOuAbrirSala(dadosConsulta)
+    activate google
+
+    alt Conexão bem-sucedida
+        google --> ctrl : 2.4.1: linkMeet
+        ctrl --> ui : 2.5: salaCarregada(linkMeet)
+        ui --> usuario : 2.6: redirecionarParaMeet()
+    else Falha na conexão
+        google --> ctrl : 2.4.2: erroConexao
+        ctrl --> ui : 2.5e: notificarFalhaConexao(mensagem)
+        ui --> usuario : 2.6e: exibirErroConexao(mensagem)
+    end
+
+    deactivate google
+
+else Horário inválido
+    ctrl --> ui : 2.3e: horarioInvalido(mensagem)
+    ui --> usuario : 2.4e: exibirMensagemErro(mensagem)
+end
+
+deactivate ctrl
+deactivate ui
+deactivate usuario
+@enduml

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="15.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastrarQuestionarioController">
+   <padding><Insets bottom="20" left="20" right="20" top="20"/></padding>
+   
+   <Label text="Novo Questionário" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+   
+   <VBox spacing="5">
+       <Label text="Título do Questionário:"/>
+       <TextField fx:id="txtTituloQuestionario" promptText="Ex: Avaliação de Ansiedade"/>
+   </VBox>
+   
+   <Separator/>
+   
+   <Label text="Adicionar Perguntas" style="-fx-font-weight: bold;"/>
+   
+   <GridPane hgap="10" vgap="10">
+       <columnConstraints>
+           <ColumnConstraints percentWidth="30"/>
+           <ColumnConstraints percentWidth="70"/>
+       </columnConstraints>
+       
+       <Label text="Enunciado:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+       <TextField fx:id="txtEnunciado" promptText="Digite a pergunta..." GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+       
+       <Label text="Opções (separe por ;):" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+       <TextField fx:id="txtOpcoes" promptText="Ex: Sim; Não; Às vezes" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+   </GridPane>
+   
+   <Button text="+ Adicionar Pergunta" onAction="#onAdicionarPergunta"/>
+   
+   <Label text="Perguntas Adicionadas:"/>
+   <ListView fx:id="listaPerguntasAdicionadas" prefHeight="150"/>
+   
+   <Label fx:id="lblMensagem"/>
+   
+   <HBox spacing="10" alignment="CENTER_RIGHT">
+       <Button text="Cancelar / Voltar" onAction="#onVoltar"/>
+       <Button text="Salvar Questionário" onAction="#onSalvarQuestionario" style="-fx-background-color: #4682B4; -fx-text-fill: white;"/>
+   </HBox>
+
+</VBox>
