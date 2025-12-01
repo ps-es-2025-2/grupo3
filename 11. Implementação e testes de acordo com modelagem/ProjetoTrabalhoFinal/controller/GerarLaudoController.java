@@ -18,11 +18,9 @@ public class GerarLaudoController {
     public void initData(Psicologo psi) {
         this.psicologoLogado = psi;
         
-        // Mock de alunos para o psicólogo escolher
         cbAlunos.getItems().add(new Aluno(1L, "João da Silva", "joao@email.com", "", ""));
         cbAlunos.getItems().add(new Aluno(2L, "Maria Oliveira", "maria@email.com", "", ""));
         
-        // Configura como o ComboBox exibe o nome do aluno (senão mostra o endereço de memória)
         cbAlunos.setCellFactory(param -> new ListCell<Aluno>() {
             @Override protected void updateItem(Aluno item, boolean empty) {
                 super.updateItem(item, empty);
@@ -38,11 +36,9 @@ public class GerarLaudoController {
         String texto = txtConteudo.getText();
 
         if (alunoSelecionado != null && !texto.isEmpty()) {
-            // Cria o objeto Laudo
             Laudo novoLaudo = new Laudo(System.currentTimeMillis(), alunoSelecionado, psicologoLogado);
             novoLaudo.setConteudo(texto);
             
-            // SALVA NO REPOSITÓRIO COMPARTILHADO
             Repositorio.adicionarLaudo(novoLaudo);
             
             lblMensagem.setStyle("-fx-text-fill: green;");

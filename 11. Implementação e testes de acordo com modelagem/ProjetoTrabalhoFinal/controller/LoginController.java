@@ -9,17 +9,15 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-// Imports do Model
 import model.Aluno;
 import model.Usuario;
 import model.Psicologo;     
 import model.Repositorio;   
 
-import java.io.IOException;      // Para tratar erros ao ler o arquivo
+import java.io.IOException;    
 
 public class LoginController {
 
-    // Componentes mapeados do FXML
     @FXML
     private TextField txtEmail;
 
@@ -29,25 +27,19 @@ public class LoginController {
     @FXML
     private Label lblMensagem;
 
-    // Método disparado ao clicar no botão
     @FXML
     protected void onLoginClick() {
         String email = txtEmail.getText();
         String senha = txtSenha.getText();
 
-        // Inicializa o repositório de dados falsos
         model.Repositorio.inicializarMock();
 
         if (email.contains("psi")) {
-            // --- LÓGICA DE PSICÓLOGO ---
-            // Login fixo para teste: ana@psi.com / 123456
             if (senha.equals("123456")) {
                 try {
-                    // Carrega Dashboard do Psicólogo
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DashboardPsicologo.fxml"));
                     Parent root = loader.load();
                     
-                    // Passa dados do psicólogo (MOCK)
                     Psicologo psiMock = new Psicologo(99L, "Dra. Ana", email, senha, "CRP-12345");
                     controller.DashboardPsicologoController dashPsi = loader.getController();
                     dashPsi.initData(psiMock);
@@ -64,7 +56,6 @@ public class LoginController {
             }
 
         } else {
-            // --- LÓGICA DE ALUNO (Mantém a anterior) ---
             Usuario usuarioDoBanco = new Aluno(1L, "João da Silva", "joao", "123456", "111.222.333-44");
             if (usuarioDoBanco.login(email, senha)) {
                 try {

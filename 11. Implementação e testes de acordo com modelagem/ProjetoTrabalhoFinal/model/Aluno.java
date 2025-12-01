@@ -13,7 +13,6 @@ public class Aluno extends Usuario {
         this.cpf = cpf;
     }
 
-    // Métodos do Diagrama
     public void responderQuestionario(Questionario q) {
         System.out.println("Aluno respondendo questionário: " + q.getTitulo());
     }
@@ -34,7 +33,6 @@ public class Aluno extends Usuario {
         System.out.println("Respondendo pesquisa de feedback...");
     }
 
-    // Getters e Setters específicos
     public String getCpf() { return cpf; }
     public void setCpf(String cpf) { this.cpf = cpf; }
     public String getEscola() { return escola; }

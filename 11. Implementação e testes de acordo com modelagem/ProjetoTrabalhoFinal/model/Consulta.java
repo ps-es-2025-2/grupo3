@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 public class Consulta {
     private Long id;
     private LocalDateTime dataHora;
-    private Integer duracao; // em minutos
+    private Integer duracao;
     private String status;
     private String linkMeet;
     private Long alunoId;

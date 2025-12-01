@@ -11,7 +11,6 @@ public class Laudo {
     private Long alunoId;
     private Long psicologoId;
     
-    // Associação com GeradorPDF
     private GeradorPDF geradorPDF;
 
     public Laudo(Long id, Aluno aluno, Psicologo psicologo) {

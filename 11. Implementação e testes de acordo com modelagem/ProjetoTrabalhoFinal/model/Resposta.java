@@ -22,6 +22,6 @@ public class Resposta {
     }
 
     public Integer calcularPontuacao() {
-        return 0; // Lógica de pontuação
+        return 0;
     }
 }

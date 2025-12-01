@@ -7,11 +7,11 @@ public class API_Google {
     private String clientSecret;
 
     public Boolean autenticarGoogle() {
-        return true; // Simulação
+        return true; 
     }
 
     public String gerarLinkMeet() {
-        return "https://meet.google.com/abc-defg-hij"; // Link simulado
+        return "https://meet.google.com/abc-defg-hij"; 
     }
     
     public Map<String, String> obterDadosUsuario() {

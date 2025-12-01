@@ -14,7 +14,7 @@ public class CadastrarQuestionarioController {
 
     @FXML private TextField txtTituloQuestionario;
     @FXML private TextField txtEnunciado;
-    @FXML private TextField txtOpcoes; // Ex: "Sim;Não"
+    @FXML private TextField txtOpcoes; 
     @FXML private ListView<String> listaPerguntasAdicionadas;
     @FXML private Label lblMensagem;
 

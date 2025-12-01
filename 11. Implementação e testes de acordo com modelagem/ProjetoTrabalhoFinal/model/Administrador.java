@@ -8,7 +8,6 @@ public class Administrador extends Usuario {
         this.nivelAcesso = "TOTAL";
     }
 
-    // Métodos do Diagrama
     public void cadastrarPsicologo(Psicologo p) {
         System.out.println("Psicólogo " + p.getNome() + " cadastrado.");
     }
@@ -21,7 +20,6 @@ public class Administrador extends Usuario {
         System.out.println("Questionário " + q.getTitulo() + " cadastrado.");
     }
     
-    // Getters e Setters
     public String getNivelAcesso() { return nivelAcesso; }
     public void setNivelAcesso(String nivelAcesso) { this.nivelAcesso = nivelAcesso; }
 }

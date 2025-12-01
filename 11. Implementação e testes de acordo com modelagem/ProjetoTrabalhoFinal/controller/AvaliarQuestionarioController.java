@@ -27,7 +27,6 @@ public class AvaliarQuestionarioController {
 
     private void carregarLista() {
         listaPendentes.getItems().clear();
-        // Busca agora objetos do tipo QuestionarioRespondido
         listaPendentes.getItems().addAll(Repositorio.getQuestionariosPendentes());
     }
 
@@ -40,7 +39,6 @@ public class AvaliarQuestionarioController {
             sb.append("Aluno: ").append(itemSelecionado.getAluno().getNome()).append("\n");
             sb.append("Questionário: ").append(itemSelecionado.getQuestionario().getTitulo()).append("\n\n");
             
-            // Itera sobre o mapa de respostas
             for (Map.Entry<String, String> entry : itemSelecionado.getRespostasDetalhadas().entrySet()) {
                 sb.append("• ").append(entry.getKey()).append("\n");
                 sb.append("   R: ").append(entry.getValue()).append("\n\n");
@@ -65,23 +63,18 @@ public class AvaliarQuestionarioController {
             return;
         }
 
-        // 1. Marca o questionário como avaliado
         itemSelecionado.registrarFeedback(feedbackTexto);
         
-        // 2. CRIA UM LAUDO AUTOMÁTICO
-        // Isso permite que o aluno veja o feedback na tela "Meus Laudos"
         Laudo laudoFeedback = new Laudo(System.currentTimeMillis(), itemSelecionado.getAluno(), psicologoLogado);
         laudoFeedback.setConteudo("FEEDBACK - " + itemSelecionado.getQuestionario().getTitulo() + ":\n" + feedbackTexto);
         
         Repositorio.adicionarLaudo(laudoFeedback);
 
-        // 3. Atualiza a interface
         lblStatus.setStyle("-fx-text-fill: green;");
         lblStatus.setText("Feedback enviado com sucesso!");
         txtRespostas.clear();
         txtFeedback.clear();
         
-        // Recarrega a lista (o item avaliado vai sumir pois não é mais pendente)
         carregarLista();
         itemSelecionado = null;
     }

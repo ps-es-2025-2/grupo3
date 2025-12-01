@@ -10,7 +10,6 @@ public class Psicologo extends Usuario {
         this.crp = crp;
     }
 
-    // Métodos do Diagrama
     public void analisarAluno(Aluno aluno) {
         System.out.println("Analisando aluno: " + aluno.getNome());
     }
@@ -27,7 +26,6 @@ public class Psicologo extends Usuario {
         System.out.println("Realizando consulta...");
     }
     
-    // Getters e Setters
     public String getCrp() { return crp; }
     public void setCrp(String crp) { this.crp = crp; }
 }

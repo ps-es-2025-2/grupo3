@@ -6,7 +6,7 @@ import java.util.List;
 public class Pergunta {
     private Long id;
     private String enunciado;
-    private String tipo; // Ex: "MULTIPLA_ESCOLHA", "TEXTO"
+    private String tipo;
     private List<String> opcoes;
     private Boolean obrigatoria;
     private Integer ordem;

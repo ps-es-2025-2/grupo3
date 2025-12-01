@@ -8,7 +8,6 @@ public class Autenticacao {
     private Long usuarioId;
 
     public Boolean validarCredenciais(String email, String senha) {
-        // Lógica real de validação (hash, banco de dados)
         return true;
     }
 

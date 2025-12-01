@@ -10,10 +10,8 @@ public class QuestionarioRespondido {
     private Questionario questionario;
     private Date dataRealizacao;
     
-    // Mapa: Enunciado da Pergunta -> Resposta do Aluno
     private Map<String, String> respostasDetalhadas; 
     
-    // Área do Psicólogo
     private String feedbackPsicologo; 
     private boolean avaliado;
 
@@ -35,14 +33,12 @@ public class QuestionarioRespondido {
         this.avaliado = true;
     }
 
-    // Getters
     public Aluno getAluno() { return aluno; }
     public Questionario getQuestionario() { return questionario; }
     public Map<String, String> getRespostasDetalhadas() { return respostasDetalhadas; }
     public String getFeedbackPsicologo() { return feedbackPsicologo; }
     public boolean isAvaliado() { return avaliado; }
     
-    // Importante para aparecer bonito na lista visual do JavaFX
     @Override
     public String toString() {
         return aluno.getNome() + " - " + questionario.getTitulo();

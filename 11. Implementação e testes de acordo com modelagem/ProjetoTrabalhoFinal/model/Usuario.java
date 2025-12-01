@@ -12,10 +12,8 @@ public abstract class Usuario {
     protected Boolean ativo;
     protected Boolean consentimentoLGPD;
 
-    // Construtor vazio
     public Usuario() {}
 
-    // Construtor completo
     public Usuario(Long id, String nome, String email, String senha) {
         this.id = id;
         this.nome = nome;
@@ -25,9 +23,7 @@ public abstract class Usuario {
         this.dataCadastro = new Date();
     }
 
-    // Métodos do Diagrama
     public Boolean login(String email, String senha) {
-        // Lógica simplificada para teste
         return this.email.equals(email) && this.senha.equals(senha);
     }
 
@@ -48,11 +44,9 @@ public abstract class Usuario {
     }
 
     public Map<String, Object> acessarDadosPessoais() {
-        // Retorna um mapa simulando os dados
         return Map.of("nome", nome, "email", email);
     }
 
-    // Getters e Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public String getNome() { return nome; }

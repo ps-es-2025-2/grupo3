@@ -25,10 +25,8 @@ public class SelecionarQuestionarioController {
 
     private void carregarLista() {
         listaQuestionarios.getItems().clear();
-        // Busca a lista estática do Repositório (populada pelo Psicólogo)
         listaQuestionarios.getItems().addAll(Repositorio.getQuestionarios());
 
-        // Configura para mostrar apenas o título do questionário na lista visual
         listaQuestionarios.setCellFactory(param -> new ListCell<Questionario>() {
             @Override
             protected void updateItem(Questionario item, boolean empty) {
@@ -53,13 +51,11 @@ public class SelecionarQuestionarioController {
         }
 
         try {
-            // Abre a tela de responder o questionário
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Questionario.fxml"));
             Parent root = loader.load();
             
             QuestionarioController controller = loader.getController();
             
-            // --- MUDANÇA IMPORTANTE: Passamos o aluno E o questionário selecionado ---
             controller.initData(this.alunoLogado, selecionado);
             
             Stage stage = (Stage) listaQuestionarios.getScene().getWindow();

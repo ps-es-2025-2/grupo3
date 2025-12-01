@@ -25,10 +25,8 @@ public class AgendamentoController {
 
     private Aluno alunoLogado;
 
-    // Método executado automaticamente quando a tela abre
     @FXML
     public void initialize() {
-        // Popula o ComboBox com horários fixos para teste
         cbHorario.getItems().addAll("08:00", "09:00", "10:00", "14:00", "15:00", "16:00");
     }
 
@@ -46,20 +44,14 @@ public class AgendamentoController {
             return;
         }
 
-        // Conversão simples para LocalDateTime
         LocalTime hora = LocalTime.parse(horaSelecionada);
         LocalDateTime dataHora = LocalDateTime.of(dataSelecionada, hora);
 
-        // --- USO DO MODEL ---
-        // Aqui instanciamos a classe de domínio que criamos no início
         Consulta novaConsulta = new Consulta(System.currentTimeMillis(), dataHora);
-        novaConsulta.agendarConsulta(); // Este método do Model imprime no console e gera link
         
-        // Feedback visual
         lblStatus.setStyle("-fx-text-fill: green;");
         lblStatus.setText("Agendado com sucesso para " + dataHora);
         
-        // Bloqueia botões para não duplicar
         dtData.setDisable(true);
         cbHorario.setDisable(true);
     }
@@ -70,7 +62,6 @@ public class AgendamentoController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DashboardAluno.fxml"));
             Parent root = loader.load();
             
-            // Precisamos devolver o objeto Aluno para o Dashboard não quebrar
             DashboardAlunoController dashboardController = loader.getController();
             dashboardController.initData(this.alunoLogado);
             

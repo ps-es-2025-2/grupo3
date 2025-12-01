@@ -51,6 +51,5 @@ public class Repositorio {
     
  
     public static void inicializarMock() {
-        // Se necessário, crie dados falsos aqui
     }
 }

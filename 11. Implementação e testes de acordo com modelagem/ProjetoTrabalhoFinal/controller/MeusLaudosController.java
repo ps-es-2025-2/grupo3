@@ -21,7 +21,6 @@ public class MeusLaudosController {
     }
 
     private void carregarLaudos() {
-        // Busca do "Banco de Dados" estático
         List<Laudo> laudos = Repositorio.getLaudosDoAluno(alunoLogado.getId());
         
         listaLaudos.getItems().clear();
@@ -29,9 +28,7 @@ public class MeusLaudosController {
             listaLaudos.getItems().add("Nenhum laudo encontrado.");
         } else {
             for (Laudo l : laudos) {
-                // Formata a string para aparecer na lista
                 String item = "Data: " + l.toString() + "\nConteúdo: " + l.getConteudo(); 
-                // Nota: implemente toString() em Laudo ou use formatação de data
                 listaLaudos.getItems().add(item);
             }
         }
