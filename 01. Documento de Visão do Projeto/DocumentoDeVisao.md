@@ -3,10 +3,9 @@
 ## Equipe
 | Aluno | GitHub | Cargo |
 |-------------|-------------|-------------|
-|Gustavo Rodrigues Ribeiro | GustavooRibas | Arquiteto de Software (AS)
+|Gustavo Rodrigues Ribeiro | GustavooRibas | Arquiteto de Software (AS) e Desenvolvedor Backend (DB)
 |Murillo Gordo de Andrade | murilloandrade | Testador (TT)
-|Davi de Souza Fernandes | sfDavi | Desenvolvedor Backend (DB) e Desenvolvedor Frontend (DF)
-|Felipe Alves Leão de Araújo| FelipeAlvesLeao | Analista de Requisitos (AR)
+|Felipe Alves Leão de Araújo| FelipeAlvesLeao | Analista de Requisitos (AR) e Desenvolvedor Frontend (DF)
 
 ## Introdução
 

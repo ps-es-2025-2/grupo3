@@ -8,7 +8,6 @@
 |-------------|-------------|
 |Gustavo Rodrigues Ribeiro | GustavooRibas
 |Murillo Gordo de Andrade | murilloandrade
-|Davi de Souza Fernandes | sfDavi
 |Felipe Alves Leão de Araújo| FelipeAlvesLeao
 
 ## Introdução
