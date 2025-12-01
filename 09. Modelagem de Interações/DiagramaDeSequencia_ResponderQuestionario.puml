@@ -1,0 +1,117 @@
+@startuml
+title Diagrama de Sequência – Responder Questionário
+
+actor "Aluno" as aluno
+participant "FormularioDashboard" as dashboard <<boundary>>
+participant "ControladorQuestionario" as ctrl <<control>>
+participant "Questionario" as quest <<entity>>
+participant "Resposta" as respostas <<entity>>
+participant "RepositoryQuestionarios" as bd <<repository>>
+
+activate aluno
+
+== Escolher Questionário ==
+aluno -> dashboard : 1: escolherQuestionario()
+activate dashboard
+
+dashboard -> ctrl : 2: buscarQuestionariosDisponiveis()
+activate ctrl
+
+ctrl -> bd : 3: listarQuestionariosAtivos()
+activate bd
+bd --> ctrl : 3.1: List<listaQuestionarios>
+
+note right of ctrl
+listaQuestionarios = [
+  { id, titulo, descricao, qtdPerguntas }
+]
+end note
+
+deactivate bd
+
+ctrl --> dashboard : 4: questionariosDisponiveis(listaQuestionarios)
+deactivate ctrl
+
+dashboard --> aluno : 5: exibirQuestionarios(listaQuestionarios)
+
+aluno -> dashboard : 6: selecionarQuestionario(id)
+dashboard -> ctrl : 7: carregarQuestionario(id)
+activate ctrl
+
+ctrl -> bd : 7.1: buscarQuestionarioPorId(id)
+activate bd
+bd --> ctrl : 7.1.1: questionario
+deactivate bd
+
+== Apresentar Perguntas ==
+ctrl -> quest : 8: obterPerguntas()
+activate quest
+quest --> ctrl : 8.1: List<listaPerguntas>
+
+note right of ctrl
+listaPerguntas = [
+  { idPergunta, enunciado, alternativas[], tipo }
+]
+end note
+
+deactivate quest
+
+ctrl --> dashboard : 9: apresentarPerguntas(listaPerguntas)
+deactivate ctrl
+
+dashboard --> aluno : 10: exibirPerguntas(listaPerguntas)
+deactivate dashboard
+
+== Responder Questões ==
+' iteração com a notação solicitada
+aluno -> dashboard : 11: ~*[i := 1..n]: responderQuestao(idPergunta[i], resp[i])
+activate dashboard
+dashboard -> dashboard : 11.1: ~*[i := 1..n]: armazenarResposta(idPergunta[i], resp[i])
+deactivate dashboard
+
+aluno -> dashboard : 12: finalizarQuestionario()
+dashboard -> ctrl : 13: submeterRespostas(idQuestionario, respostas)
+activate ctrl
+
+== Salvar Respostas ==
+create respostas
+ctrl -> respostas : 14: criar(idQuestionario, idAluno)
+
+note right of respostas
+respostas = [
+  { idPergunta, respostaAluno }
+]
+end note
+
+activate respostas
+respostas --> ctrl : 14.1: criado
+deactivate respostas
+
+ctrl -> respostas : 15: ~*[i := 1..n]: adicionarResposta(resp[i])
+activate respostas
+respostas --> ctrl : 15.1: respostaAdicionada
+deactivate respostas
+
+ctrl -> bd : 16: salvarRespostas(respostas)
+activate bd
+bd --> ctrl : 16.1: confirmacao
+deactivate bd
+
+== Calcular e Salvar Pontuação ==
+ctrl -> quest : 17: calcularPontuacao(respostas)
+activate quest
+quest --> ctrl : 17.1: pontuacao
+deactivate quest
+
+ctrl -> bd : 18: salvarPontuacaoAluno(idAluno, idQuestionario, pontuacao)
+activate bd
+bd --> ctrl : 18.1: confirmacaoPontuacao
+deactivate bd
+
+== Notificação Final ==
+ctrl --> dashboard : 19: questionarioFinalizado()
+deactivate ctrl
+
+dashboard --> aluno : 20: notificarFinalizacao()
+deactivate aluno
+@enduml

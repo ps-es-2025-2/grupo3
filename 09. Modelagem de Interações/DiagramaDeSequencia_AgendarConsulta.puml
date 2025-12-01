@@ -1,0 +1,61 @@
+@startuml
+title Diagrama de Sequência – Agendar Consulta
+
+actor "Usuário (Aluno/Psicólogo)" as usuario
+participant "TelaAgenda" as ui <<boundary>>
+participant "ControladorConsulta" as ctrl <<control>>
+participant "Consulta" as consulta <<entity>>
+participant "RepositoryConsultas" as repo <<repository>>
+
+activate usuario
+
+' ========================================================================
+' Caso de Uso: Agendar Consulta
+' ========================================================================
+
+== Agendar Consulta ==
+
+usuario -> ui : 1: acessarAgenda()
+activate ui
+
+ui -> ctrl : 2: solicitarHorariosDisponiveis()
+activate ctrl
+
+ctrl -> repo : 2.1: listarHorarios()
+activate repo
+repo --> ctrl : 2.1.1: horariosDisponiveis
+deactivate repo
+
+ctrl --> ui : 2.2: exibirHorarios(horariosDisponiveis)
+deactivate ctrl
+
+ui --> usuario : 2.3: mostrarListaHorarios()
+
+usuario -> ui : 3: selecionarHorario(horario)
+
+ui -> ctrl : 4: agendarConsulta(idUsuario, horario)
+activate ctrl
+
+ctrl -> consulta : 4.1: criar(idUsuario, horario)
+activate consulta
+consulta --> ctrl : 4.1.1: consultaCriada
+deactivate consulta
+
+ctrl -> repo : 4.2: salvarConsulta(consulta)
+activate repo
+
+alt Horário disponível (sucesso)
+    repo --> ctrl : 4.2.1: confirmacao
+    ctrl --> ui : 4.3: consultaAgendada()
+    ui --> usuario : 4.4: notificarSucesso()
+else Conflito de agenda
+    repo --> ctrl : 4.2.2: erroHorarioOcupado
+    ctrl --> ui : 4.3e: notificarConflito(mensagem)
+    ui --> usuario : 4.4e: exibirMensagemConflito(mensagem)
+end
+
+deactivate repo
+deactivate ctrl
+deactivate ui
+
+@enduml

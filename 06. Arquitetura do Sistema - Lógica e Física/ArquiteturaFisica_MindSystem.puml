@@ -1,0 +1,61 @@
+@startuml
+title Arquitetura Física — Sistema de Teste Vocacional (Mind System)
+
+skinparam shadowing false
+skinparam defaultTextAlignment left
+skinparam componentStyle rectangle
+skinparam packageStyle rectangle
+
+cloud "Internet" as INTERNET {
+  node "Cliente Web\n(Navegador React)" as CLIENT_WEB <<client>>
+  node "Cliente Mobile\n(Android/iOS - Flutter)" as CLIENT_MOBILE <<client>>
+}
+
+rectangle "DMZ (Zona Pública)" as DMZ {
+  node "API Gateway / Nginx\n(Reverse Proxy, HTTPS)" as GATEWAY <<gateway>>
+}
+
+' ==================== Servidor A: Aplicação Principal ====================
+rectangle "Servidor A — Aplicação (Backend)" as SRV_APP {
+  node "MindSystem API\n(Node.js / Express)" as API <<app>>
+  database "Banco de Dados\nPostgreSQL" as DB
+  node "Redis (Cache Sessões)" as REDIS
+}
+
+' ==================== Servidor B: Serviços Externos ====================
+rectangle "Servidor B — Serviços Integrados" as SRV_EXT {
+  node "Google Meet API" as GOOGLE <<external>>
+  node "Gerador de PDF\n(jsPDF Service)" as PDF <<external>>
+}
+
+' ==== Fluxos Principais ====
+CLIENT_WEB --> GATEWAY : HTTPS Requests
+CLIENT_MOBILE --> GATEWAY : HTTPS Requests
+
+GATEWAY --> API : REST (/api/**)
+API --> DB : CRUD (Usuários, Questionários, Consultas)
+API --> REDIS : Cache Sessões/Autenticação
+
+API --> GOOGLE : REST (integrações Meet)
+API --> PDF : HTTP (geração de laudos PDF)
+
+' ==== Notas ====
+note top of SRV_APP
+Servidor A — Backend Principal
+• Lida com autenticação, questionários, laudos e consultas
+• Persiste dados em PostgreSQL
+• Usa Redis para cache e sessões
+end note
+
+note right of SRV_EXT
+Servidor B — Serviços Externos
+• Integrações com Google Meet
+• Serviço para geração de PDFs de laudos
+end note
+
+note right of GATEWAY
+API Gateway (DMZ)
+• Faz balanceamento, autenticação e roteamento seguro
+• /api/** → MindSystem API (Servidor A)
+end note
+@enduml

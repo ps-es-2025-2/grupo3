@@ -1,0 +1,18 @@
+@startuml
+title Diagrama de Estados - Gerenciar Questionários
+
+state "Atualizando questionário" as dados_at
+state "Validando atualização" as val
+state "Questionário excluido" as dados_ex
+state "Questionário atualizado" as dados_ok
+state "Atualização cancelada" as cancel
+[*] --> dados_at 
+dados_at --> val : Edição do \nquestionário
+dados_at --> dados_ex : Exclusão \n Iniciada
+val --> dados_ok : Dados\n atualizados com sucesso
+val --> dados_at : Campo obrigatório\n não preenchido
+dados_at --> cancel : Cancelar
+dados_ok --> [*]
+cancel --> [*]
+dados_ex --> [*]
+@enduml

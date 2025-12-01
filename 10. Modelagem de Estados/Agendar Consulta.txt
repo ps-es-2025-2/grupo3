@@ -1,0 +1,17 @@
+@startuml
+title Diagrama de Estados - Consultas
+
+state "Selecionando Horário" as hor
+state "Agendando Consulta" as cons
+state "Consulta Agendada" as cons_ok
+state "Horário Disponível" as hor_d
+state "Horário Selecionado" as hor_s
+[*] --> hor : Agenda\n aberta
+hor --> hor_d : Horário\n buscado
+hor_d --> hor_s : Horário\n clicado
+hor_s --> cons : Consulta\n preenchida
+cons --> cons_ok : Consultada\n submetida
+cons --> hor : Horário marcado\n por outro usuário
+cons_ok --> [*]
+
+@enduml

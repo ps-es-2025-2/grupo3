@@ -1,0 +1,140 @@
+@startuml
+title Arquitetura Lógica — Sistema de Teste Vocacional (Mind System)
+
+skinparam componentStyle rectangle
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam defaultTextAlignment left
+
+' ==== Camada de Apresentação (UI) ====
+package "Apresentação (Interface Web)" as UI {
+  component "AlunoController\n(View/REST)" as AlunoController <<controller>>
+  component "PsicologoController\n(View/REST)" as PsicologoController <<controller>>
+  component "AdminController\n(View/REST)" as AdminController <<controller>>
+}
+
+' ==== Camada de Aplicação (Serviços) ====
+package "Aplicação (Serviços / Casos de Uso)" as APP {
+  component "AutenticacaoService" as AuthService <<usecase>>
+  component "GerenciarQuestionarioService" as QuestionarioService <<usecase>>
+  component "GerarLaudoService" as LaudoService <<usecase>>
+  component "AgendarConsultaService" as ConsultaService <<usecase>>
+  component "FeedbackService" as FeedbackService <<usecase>>
+  component "GerenciarUsuariosService" as UserService <<usecase>>
+}
+
+' ==== Camada de Domínio (Negócio) ====
+package "Domínio (Regras de Negócio)" as DOM {
+  package "Entidades" as ENT {
+    component "Usuario" as Usuario <<entity>>
+    component "Aluno" as Aluno <<entity>>
+    component "Psicologo" as Psicologo <<entity>>
+    component "Administrador" as Administrador <<entity>>
+    component "Questionario" as Questionario <<entity>>
+    component "Pergunta" as Pergunta <<entity>>
+    component "Resposta" as Resposta <<entity>>
+    component "Laudo" as Laudo <<entity>>
+    component "Consulta" as Consulta <<entity>>
+    component "PesquisaFeedback" as Feedback <<entity>>
+  }
+
+  package "Serviços de Domínio" as SDS {
+    component "RegraGeracaoLaudo" as RegraLaudo <<domain service>>
+    component "ValidadorQuestionario" as RegraQuestionario <<domain service>>
+  }
+
+  package "Contratos (Portas)" as PORTS {
+    interface "RepositorioUsuarios" as IUserRepo
+    interface "RepositorioQuestionarios" as IQuestRepo
+    interface "RepositorioConsultas" as IConsultaRepo
+    interface "ServicoGeradorPDF" as IPDF
+    interface "ServicoAPIGoogle" as IGoogleAPI
+  }
+}
+
+' ==== Camada de Infraestrutura (Adaptadores) ====
+package "Infraestrutura (Adaptadores / Implementações)" as INFRA {
+  package "Persistência" as PERS {
+    component "PostgresUsuarioRepo" as PgUserRepo <<repository>>
+    component "PostgresQuestionarioRepo" as PgQuestRepo <<repository>>
+    component "PostgresConsultaRepo" as PgConsultaRepo <<repository>>
+  }
+
+  package "Serviços Externos" as EXT {
+    component "GeradorPDFService" as PdfService <<adapter>>
+    component "GoogleMeetAPI" as GoogleAPI <<adapter>>
+  }
+}
+
+' ==== Dependências entre camadas ====
+
+' --- UI -> Aplicação ---
+AlunoController --> AuthService
+AlunoController --> QuestionarioService
+AlunoController --> ConsultaService
+PsicologoController --> LaudoService
+AdminController --> FeedbackService
+AdminController --> QuestionarioService
+AdminController --> UserService
+
+' --- Aplicação -> Domínio ---
+AuthService --> Usuario
+AuthService --> IUserRepo
+QuestionarioService --> Questionario
+QuestionarioService --> Pergunta
+QuestionarioService --> Resposta
+QuestionarioService --> IQuestRepo
+ConsultaService --> Consulta
+ConsultaService --> IConsultaRepo
+LaudoService --> Laudo
+LaudoService --> IPDF
+LaudoService --> RegraLaudo
+FeedbackService --> Feedback
+UserService --> Administrador
+UserService --> Psicologo
+UserService --> IUserRepo
+
+' --- Domínio interno ---
+Aluno --> Resposta
+Pergunta --> Resposta
+Resposta --> Pergunta
+Administrador ----> Questionario
+Administrador ----> Feedback
+Administrador ----> Psicologo
+RegraQuestionario --> Questionario
+
+' --- Infraestrutura implementa portas ---
+PgUserRepo -down-|> IUserRepo
+PgQuestRepo -down-|> IQuestRepo
+PgConsultaRepo -down-|> IConsultaRepo
+PdfService -down-|> IPDF
+GoogleAPI -down-|> IGoogleAPI
+
+' --- Aplicação pode acionar APIs externas ---
+ConsultaService ..> IGoogleAPI : integração Meet
+
+' ==== Notas ====
+note top of DOM
+Camada de Domínio
+- Contém regras de negócio e entidades principais
+- Define contratos (portas) para persistência e serviços externos
+end note
+
+note right of APP
+Camada de Aplicação
+- Orquestra casos de uso
+- Coordena entidades do domínio
+end note
+
+note left of UI
+Camada de Apresentação
+- Interação via REST/Views
+- Não acessa diretamente o domínio
+end note
+
+note bottom of INFRA
+Camada de Infraestrutura
+- Implementa portas do domínio
+- Persistência e integrações externas
+end note
+@enduml

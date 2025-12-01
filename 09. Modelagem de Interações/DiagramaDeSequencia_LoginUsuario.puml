@@ -1,0 +1,46 @@
+@startuml
+title Diagrama de Sequência – Login Usuário
+
+actor "Usuário" as usuario
+participant "TelaAutenticacao" as ui <<boundary>>
+participant "ControladorAutenticacao" as ctrl <<control>>
+participant "RepositoryUsuarios" as repo <<repository>>
+
+activate usuario
+
+' ============================================================
+' Caso de Uso: Realizar Login
+' ============================================================
+
+== Realizar Login ==
+
+activate usuario
+
+usuario -> ui : 1: inserirCredenciais(email, senha)
+activate ui
+
+ui -> ctrl : 2: validarCredenciais(email, senha)
+activate ctrl
+
+ctrl -> repo : 2.1: buscarUsuarioPorEmail(email)
+activate repo
+repo --> ctrl : 2.1.1: usuarioEncontrado
+deactivate repo
+
+alt Credenciais inválidas
+    ctrl --> ui : 2.2e: erroLogin(mensagem)
+    ui --> usuario : 2.3e: exibirMensagemErro(mensagem)
+else Credenciais válidas
+    ctrl --> ui : 2.2: acessoPermitido()
+    ui --> usuario : 2.3: redirecionarParaPerfil()
+end
+
+' Múltiplas tentativas incorretas
+opt Tentativas Excedidas
+    ctrl --> ui : 2.4e: acessoBloqueadoTemporariamente(mensagem)
+    ui --> usuario : 2.5e: exibirBloqueio(mensagem)
+end
+
+deactivate ctrl
+deactivate ui
+@enduml

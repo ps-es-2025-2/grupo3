@@ -1,0 +1,15 @@
+@startuml
+title Diagrama de Estados - Atualizar dados pessoais
+
+state "Dados não atualizados" as dados
+state "Atualizando dados" as dados_at
+state "Dados atualizados" as dados_ok
+state "Atualização cancelada" as cancel
+[*] --> dados
+dados --> dados_at : Acessar\n edição
+dados_at --> dados_ok : Dados\n atualizados com sucesso
+dados_at --> dados_at : Campo obrigatório\n não preenchido
+dados_at --> cancel : Cancelar
+dados_ok --> [*]
+cancel --> [*]
+@enduml
