@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15.0" alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SelecionarQuestionarioController">
+   <padding><Insets bottom="20" left="20" right="20" top="20"/></padding>
+   
+   <Label text="Questionários Disponíveis" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+   <Label text="Selecione um questionário para responder:" textFill="#6b6b6b"/>
+
+   <ListView fx:id="listaQuestionarios" prefHeight="250.0" prefWidth="400.0"/>
+   
+   <Label fx:id="lblMensagem"/>
+
+   <HBox spacing="20" alignment="CENTER">
+       <Button text="Voltar" onAction="#onVoltar"/>
+       <Button text="Iniciar Respostas" onAction="#onIniciar" style="-fx-background-color: #4682B4; -fx-text-fill: white;"/>
+   </HBox>
+</VBox>

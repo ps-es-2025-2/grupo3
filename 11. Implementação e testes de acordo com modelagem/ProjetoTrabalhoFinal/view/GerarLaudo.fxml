@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="15.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GerarLaudoController">
+   <padding><Insets bottom="20" left="20" right="20" top="20"/></padding>
+   
+   <Label text="Gerar Laudo / Feedback" style="-fx-font-weight: bold; -fx-font-size: 18px;"/>
+   
+   <Label text="Selecione o Aluno:"/>
+   <ComboBox fx:id="cbAlunos" prefWidth="300.0" promptText="Escolha um aluno..."/>
+   
+   <Label text="Conteúdo do Laudo:"/>
+   <TextArea fx:id="txtConteudo" prefHeight="200.0" wrapText="true"/>
+   
+   <HBox spacing="10" alignment="CENTER_RIGHT">
+       <Button text="Cancelar" onAction="#onCancelar"/>
+       <Button text="Salvar e Enviar" onAction="#onSalvar" style="-fx-background-color: green; -fx-text-fill: white;"/>
+   </HBox>
+   
+   <Label fx:id="lblMensagem"/>
+</VBox>

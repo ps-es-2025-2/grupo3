@@ -38,4 +38,8 @@ public class Questionario {
     }
     
     public String getTitulo() { return titulo; }
+
+    public List<Pergunta> getPerguntas() {
+    return this.perguntas;
+    }
 }
