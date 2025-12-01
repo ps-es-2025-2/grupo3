@@ -31,7 +31,7 @@ O escopo inclui:
 
 [CT-01] Login de Aluno com Sucesso
 - Pré-condição: Aplicação aberta na tela de Login.
-- Passo 1: Inserir e-mail: "joao@email.com" (mock padrão) ou usuário cadastrado.
+- Passo 1: Inserir usuário: "joao" (mock padrão).
 - Passo 2: Inserir senha correta.
 - Passo 3: Clicar no botão "Entrar".
 > Resultado Esperado: Redirecionamento para o Dashboard do Aluno. Mensagem 
@@ -39,7 +39,7 @@ O escopo inclui:
 
 [CT-02] Login de Psicólogo com Sucesso
 - Pré-condição: Aplicação aberta na tela de Login.
-- Passo 1: Inserir e-mail com identificador de psicólogo (ex: "ana@psi.com").
+- Passo 1: Inserir usuário: "psi" (mock padrão).
 - Passo 2: Inserir senha correta.
 - Passo 3: Clicar no botão "Entrar".
 > Resultado Esperado: Redirecionamento para o Dashboard do Psicólogo. Acesso aos
