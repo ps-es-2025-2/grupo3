@@ -33,9 +33,14 @@ public class Questionario {
     public void desativarQuestionario() { this.ativo = false; }
 
     public Map<String, Object> calcularResultado() {
-        // Lógica de cálculo seria implementada aqui
         return null; 
     }
+    
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    
+    public String getDescricao() { return descricao; }
+    public void setDescricao(String cpf) { this.descricao = descricao; }
     
     public String getTitulo() { return titulo; }
 

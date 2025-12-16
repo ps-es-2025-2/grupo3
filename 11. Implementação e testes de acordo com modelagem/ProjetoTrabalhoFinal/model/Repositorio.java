@@ -1,55 +1,69 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Repositorio {
     
-    private static List<Laudo> laudos = new ArrayList<>();
-    private static List<QuestionarioRespondido> questionariosRespondidos = new ArrayList<>();
-    private static List<Questionario> questionarios = new ArrayList<>();
+    private static QuestionarioDAO questionarioDAO = new QuestionarioDAO();
+    private static LaudoDAO laudoDAO = new LaudoDAO();
+    private static QuestionarioRespondidoDAO qrDAO = new QuestionarioRespondidoDAO();
+    private static UsuarioDAO usuarioDAO = new UsuarioDAO();
+    private static AlunoDAO alunoDAO = new AlunoDAO();
+    private static PsicologoDAO psicologoDAO = new PsicologoDAO();
+
+    public static Usuario autenticarUsuario(String email, String senha) {
+        return usuarioDAO.autenticar(email, senha);
+    }
+    
+        public static void cadastrarAluno(Aluno aluno) {
+        try {
+            alunoDAO.salvar(aluno);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static void cadastrarPsicologo(Psicologo psi) {
+        try {
+            psicologoDAO.salvar(psi);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static List<Aluno> getAlunos() {
+        return alunoDAO.listarTodos();
+    }
 
     public static void adicionarQuestionario(Questionario q) {
-        questionarios.add(q);
+        questionarioDAO.salvar(q);
     }
 
     public static List<Questionario> getQuestionarios() {
-        return questionarios;
+        return questionarioDAO.listarTodos();
+    }
+
+    public static void adicionarLaudo(Laudo l) {
+        laudoDAO.salvar(l);
     }
     
-    public static void adicionarLaudo(Laudo l) { laudos.add(l); }
-    
     public static List<Laudo> getLaudosDoAluno(Long alunoId) {
-        List<Laudo> filtrados = new ArrayList<>();
-        for (Laudo l : laudos) {
-             filtrados.add(l); 
-        }
-        return filtrados;
+        return laudoDAO.listarPorAluno(alunoId);
     }
 
     public static boolean verificarSeJaRespondeu(Long idAluno) {
-        for (QuestionarioRespondido qr : questionariosRespondidos) {
-            if (qr.getAluno().getId().equals(idAluno)) {
-            }
-        }
-        return false;
+        return qrDAO.verificarSeAlunoRespondeu(idAluno);
     }
     
     public static void adicionarQuestionarioRespondido(QuestionarioRespondido qr) {
-        questionariosRespondidos.add(qr);
+        qrDAO.salvar(qr);
     }
 
     public static List<QuestionarioRespondido> getQuestionariosPendentes() {
-        List<QuestionarioRespondido> pendentes = new ArrayList<>();
-        for (QuestionarioRespondido qr : questionariosRespondidos) {
-            if (!qr.isAvaliado()) {
-                pendentes.add(qr);
-            }
-        }
-        return pendentes;
+        return qrDAO.listarPendentes();
     }
-    
- 
+
     public static void inicializarMock() {
     }
 }

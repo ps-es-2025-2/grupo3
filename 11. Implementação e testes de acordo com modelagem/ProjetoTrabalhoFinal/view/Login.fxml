@@ -24,7 +24,12 @@
       <PasswordField fx:id="txtSenha" promptText="Digite sua senha" />
       
       <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#onLoginClick" text="Entrar no Sistema" />
+	  
+	  <Button text="Cadastrar Aluno" onAction="#onIrParaCadastroAluno" style="-fx-background-color: transparent; -fx-text-fill: blue; -fx-underline: true;"/>
+	  
+      <Button text="Cadastrar Psicólogo" onAction="#onIrParaCadastroPsi" style="-fx-background-color: transparent; -fx-text-fill: blue; -fx-underline: true;"/>
       
+	  
       <Label fx:id="lblMensagem" text="" textFill="RED" />
    </children>
 </VBox>

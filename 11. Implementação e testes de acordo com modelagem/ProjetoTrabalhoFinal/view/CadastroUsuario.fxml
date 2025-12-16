@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" spacing="15.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroUsuarioController">
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+   </padding>
+   
+   <Label fx:id="lblTitulo" text="Novo Cadastro de Aluno">
+       <font><Font size="20.0" /></font>
+   </Label>
+   
+   <TextField fx:id="txtNome" promptText="Nome Completo" />
+   <TextField fx:id="txtEmail" promptText="E-mail" />
+   <PasswordField fx:id="txtSenha" promptText="Senha" />
+   <Label fx:id="lblDocumento" text="CPF" />
+   <TextField fx:id="txtDocumento" promptText="Digite o número" />
+
+   <Label fx:id="lblExtra" text="Escola" />
+   <TextField fx:id="txtExtra" promptText="Nome da Escola" />
+   
+   <Label fx:id="lblMensagem" textFill="RED" />
+   
+   <HBox spacing="10" alignment="CENTER">
+       <Button text="Voltar" onAction="#onVoltar" />
+       <Button text="Cadastrar" onAction="#onCadastrar" style="-fx-background-color: #4682B4; -fx-text-fill: white;" />
+   </HBox>
+</VBox>

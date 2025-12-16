@@ -36,8 +36,14 @@ public class QuestionarioRespondido {
     public Aluno getAluno() { return aluno; }
     public Questionario getQuestionario() { return questionario; }
     public Map<String, String> getRespostasDetalhadas() { return respostasDetalhadas; }
+    public void setFeedbackPsicologo(String feedback) { this.feedbackPsicologo = feedback; }
     public String getFeedbackPsicologo() { return feedbackPsicologo; }
+    public void setAvaliado(boolean avaliado) { this.avaliado = avaliado; }
     public boolean isAvaliado() { return avaliado; }
+    public void setId(Long id) { this.id = id; }
+    public Long getId() { return id; }
+    public void setDataRealizacao(Date dataRealizacao) { this.dataRealizacao = dataRealizacao; }
+    public Date getDataRealizacao() { return dataRealizacao; }
     
     @Override
     public String toString() {
