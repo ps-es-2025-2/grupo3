@@ -1,0 +1,64 @@
+CREATE TABLE aluno (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    senha VARCHAR(100) NOT NULL,
+    cpf VARCHAR(20),
+    escola VARCHAR(100),
+    serie VARCHAR(20)
+);
+
+CREATE TABLE psicologo (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    senha VARCHAR(100) NOT NULL,
+    crp VARCHAR(20)
+);
+
+CREATE TABLE laudo (
+    id SERIAL PRIMARY KEY,
+    conteudo TEXT,
+    data_geracao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    aluno_id INT REFERENCES aluno(id),
+    psicologo_id INT REFERENCES psicologo(id)
+);
+
+CREATE TABLE questionario (
+    id SERIAL PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
+    descricao TEXT,
+    ativo BOOLEAN DEFAULT TRUE,
+    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE pergunta (
+    id SERIAL PRIMARY KEY,
+    enunciado TEXT NOT NULL,
+    tipo VARCHAR(50), 
+    obrigatoria BOOLEAN DEFAULT TRUE,
+    ordem INT,
+    questionario_id INT REFERENCES questionario(id) ON DELETE CASCADE
+);
+
+CREATE TABLE opcao (
+    id SERIAL PRIMARY KEY,
+    texto VARCHAR(255) NOT NULL,
+    pergunta_id INT REFERENCES pergunta(id) ON DELETE CASCADE
+);
+
+CREATE TABLE questionario_respondido (
+    id SERIAL PRIMARY KEY,
+    aluno_id INT REFERENCES aluno(id),
+    questionario_id INT REFERENCES questionario(id),
+    data_realizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    feedback_psicologo TEXT,
+    avaliado BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE resposta_detalhada (
+    id SERIAL PRIMARY KEY,
+    questionario_respondido_id INT REFERENCES questionario_respondido(id) ON DELETE CASCADE,
+    enunciado TEXT,
+    resposta TEXT
+);

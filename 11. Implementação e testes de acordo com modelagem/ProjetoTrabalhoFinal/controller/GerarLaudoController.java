@@ -18,8 +18,8 @@ public class GerarLaudoController {
     public void initData(Psicologo psi) {
         this.psicologoLogado = psi;
         
-        cbAlunos.getItems().add(new Aluno(1L, "João da Silva", "joao@email.com", "", ""));
-        cbAlunos.getItems().add(new Aluno(2L, "Maria Oliveira", "maria@email.com", "", ""));
+        cbAlunos.getItems().clear();
+        cbAlunos.getItems().addAll(Repositorio.getAlunos());
         
         cbAlunos.setCellFactory(param -> new ListCell<Aluno>() {
             @Override protected void updateItem(Aluno item, boolean empty) {
