@@ -22,29 +22,23 @@ public class LoginController {
     @FXML private PasswordField txtSenha;
     @FXML private Label lblMensagem;
 
-    // --- LÓGICA DE LOGIN (Via Banco de Dados) ---
-
     @FXML
     protected void onLoginClick() {
         String email = txtEmail.getText();
         String senha = txtSenha.getText();
 
-        // Validação simples
         if (email.isEmpty() || senha.isEmpty()) {
             lblMensagem.setText("Preencha todos os campos.");
             return;
         }
 
-        // Chama o Repositorio, que agora consulta o PostgreSQL via UsuarioDAO
         Usuario usuarioLogado = Repositorio.autenticarUsuario(email, senha);
 
         if (usuarioLogado != null) {
             try {
-                // Verifica se o usuário encontrado é um PSICÓLOGO
                 if (usuarioLogado instanceof Psicologo) {
                     abrirDashboardPsicologo((Psicologo) usuarioLogado);
                 } 
-                // Verifica se o usuário encontrado é um ALUNO
                 else if (usuarioLogado instanceof Aluno) {
                     abrirDashboardAluno((Aluno) usuarioLogado);
                 }
@@ -53,34 +47,28 @@ public class LoginController {
                 lblMensagem.setText("Erro crítico ao abrir o painel.");
             }
         } else {
-            // Se retornou null, o email ou senha estão incorretos (ou não existem no banco)
             lblMensagem.setText("Email ou senha inválidos.");
         }
     }
 
-    // --- NAVEGAÇÃO PARA CADASTRO (Reutilizando a View) ---
-
     @FXML
     public void onIrParaCadastroAluno() {
-        abrirTelaCadastro(false); // false = Modo Aluno
+        abrirTelaCadastro(false);
     }
 
     @FXML
     public void onIrParaCadastroPsi() {
-        abrirTelaCadastro(true); // true = Modo Psicólogo
+        abrirTelaCadastro(true); 
     }
 
-    // Método auxiliar para abrir a tela de cadastro genérica
     private void abrirTelaCadastro(boolean modoPsicologo) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/CadastroUsuario.fxml"));
             Parent root = loader.load();
             
-            // Configura o controlador da tela de cadastro
             CadastroUsuarioController controller = loader.getController();
             controller.setModoPsicologo(modoPsicologo);
             
-            // Troca a cena
             Stage stage = (Stage) txtEmail.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle(modoPsicologo ? "Novo Psicólogo" : "Novo Aluno");
@@ -92,14 +80,12 @@ public class LoginController {
         }
     }
 
-    // --- MÉTODOS AUXILIARES PARA ABRIR DASHBOARDS ---
-
     private void abrirDashboardPsicologo(Psicologo psi) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DashboardPsicologo.fxml"));
         Parent root = loader.load();
         
         DashboardPsicologoController controller = loader.getController();
-        controller.initData(psi); // Passa os dados do banco para o controller
+        controller.initData(psi); 
 
         trocarCena(root, "Portal do Psicólogo");
     }
@@ -109,7 +95,7 @@ public class LoginController {
         Parent root = loader.load();
         
         DashboardAlunoController controller = loader.getController();
-        controller.initData(aluno); // Passa os dados do banco para o controller
+        controller.initData(aluno);
         
         trocarCena(root, "Painel do Aluno");
     }

@@ -33,7 +33,6 @@ public class Questionario {
     public void desativarQuestionario() { this.ativo = false; }
 
     public Map<String, Object> calcularResultado() {
-        // Lógica de cálculo seria implementada aqui
         return null; 
     }
     

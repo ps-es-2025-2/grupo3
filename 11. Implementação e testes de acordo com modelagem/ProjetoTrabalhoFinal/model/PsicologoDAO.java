@@ -19,7 +19,6 @@ public class PsicologoDAO {
             
             stmt.execute();
             
-            // Atualizar o ID do objeto Java com o ID gerado pelo banco
             ResultSet rs = stmt.getGeneratedKeys();
             if (rs.next()) {
                 psicologo.setId(rs.getLong(1));
@@ -53,5 +52,4 @@ public class PsicologoDAO {
         return null;
     }
     
-    // Implementar buscarPorEmail para o Login
 }

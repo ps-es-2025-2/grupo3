@@ -65,10 +65,5 @@ public class Repositorio {
     }
 
     public static void inicializarMock() {
-        // Este método pode ficar vazio ou ser removido, pois os dados 
-        // agora persistem na base de dados PostgreSQL e não se perdem ao fechar o programa.
-        
-        // Opcional: Pode colocar aqui uma verificação se a BD está vazia 
-        // e criar um admin ou questionário padrão se necessário.
     }
 }

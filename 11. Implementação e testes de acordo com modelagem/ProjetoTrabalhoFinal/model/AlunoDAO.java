@@ -19,7 +19,6 @@ public class AlunoDAO {
             
             stmt.execute();
             
-            // Atualizar o ID do objeto Java com o ID gerado pelo banco
             ResultSet rs = stmt.getGeneratedKeys();
             if (rs.next()) {
                 aluno.setId(rs.getLong(1));
